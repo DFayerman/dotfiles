@@ -7,9 +7,7 @@ fi
 
 export PATH=$HOME/bin:$HOME/.local/bin:usr/local/bin:/usr/local/go/bin:$PATH
 export EDITOR='nvim'
-export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
-export FZF_ALT_C_COMMAND='rg --hidden -l ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_CTRL_T_COMMAND="rg --hidden -g '!{.git,node_modules}' -l ''"
 export NVM_DIR="$HOME/.config/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 source ~/.config/keybindings/keybindings.zsh
