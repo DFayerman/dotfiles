@@ -28,8 +28,8 @@ set termguicolors
 
 set laststatus=0
 set cmdheight=2
-set updatetime=300
-set timeoutlen=500
+set updatetime=200
+set timeoutlen=400
 
 set nobackup
 set nowritebackup
@@ -55,11 +55,13 @@ nnoremap <C-c> <Esc>
 nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprevious<CR>
 nnoremap <C-p> :GFiles<CR>
-inoremap jk <Esc>
-inoremap kj <Esc>
+" inoremap jk <Esc>
+" inoremap kj <Esc>
 " inoremap <expr> <c-j> ("\<C-n>")
 " inoremap <expr> <c-k> ("\<C-p>")
+autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
+let g:python3_host_prog = '/usr/bin/python3.8'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='dracula' 
 let g:airline_powerline_fonts = 1
