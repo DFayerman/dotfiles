@@ -35,7 +35,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-call plug#begin("~/.config/nvim/plugged")
+call plug#begin("~/dotfiles/nvim-plugged")
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'dracula/vim', {'as':'dracula'}
 Plug 'vim-airline/vim-airline'
@@ -46,7 +46,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 call plug#end()
 colorscheme dracula
-source $HOME/.config/nvim/coc.vim
+source $HOME/dotfiles/coc.vim
 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"

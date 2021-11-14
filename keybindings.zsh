@@ -5,7 +5,7 @@ alias update="sudo apt update && sudo -S apt -y upgrade"
 alias l="ls -sh1FAur --group-directories-first --color=auto"
 alias ~="cd ~"
 alias cdc="cd /mnt/c/Users/david/OneDrive/code"
-alias tmux="tmux -f ~/.config/tmux/tmux.conf"
+alias tmux="tmux -f ~/dotfiles/tmux.conf"
 
 updateGoLatest() {
 	cd /
