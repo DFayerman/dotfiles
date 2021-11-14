@@ -35,7 +35,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-call plug#begin("~/dotfiles/nvim-plugged")
+call plug#begin("~/.config/nvim/plugged")
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'dracula/vim', {'as':'dracula'}
 Plug 'vim-airline/vim-airline'
