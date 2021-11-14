@@ -28,8 +28,8 @@ set termguicolors
 
 set laststatus=0
 set cmdheight=2
-set updatetime=200
-set timeoutlen=400
+set updatetime=150
+set timeoutlen=250
 
 set nobackup
 set nowritebackup
