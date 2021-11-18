@@ -38,6 +38,7 @@ set noswapfile
 call plug#begin("~/.config/nvim/plugged")
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'dracula/vim', {'as':'dracula'}
+Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf',{'do':{-> fzf#install()} }
@@ -45,7 +46,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 call plug#end()
-colorscheme dracula
+colorscheme onedark
 source $HOME/dotfiles/coc.vim
 
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
@@ -63,5 +64,5 @@ autocmd BufWritePre *.go :silent call CocAction('runCommand', 'editor.action.org
 
 let g:python3_host_prog = '/usr/bin/python3.8'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='dracula' 
+let g:airline_theme='onedark' 
 let g:airline_powerline_fonts = 1
