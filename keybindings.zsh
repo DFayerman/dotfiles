@@ -4,10 +4,11 @@ alias wget="wget -c";
 alias update="sudo apt update && sudo -S apt -y upgrade"
 alias l="ls -sh1FAur --group-directories-first --color=auto"
 alias ~="cd ~"
-alias cdc="cd /mnt/c/Users/david/OneDrive/code"
+alias cdc="cd ~/code"
 alias tmux="tmux -f ~/dotfiles/tmux.conf"
-alias nv="nvim"
-alias vi="nvim"
+alias nvim="$HOME/nvim.appimage"
+alias nv="$HOME/nvim.appimage"
+alias vi="$HOME/nvim.appimage"
 
 updateGoLatest() {
 	cd /

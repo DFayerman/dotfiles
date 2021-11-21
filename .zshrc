@@ -5,14 +5,19 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH=$HOME/bin:$HOME/.local/bin:usr/local/bin:/usr/local/go/bin:$PATH
-export EDITOR='nvim'
+export GOPATH=$HOME/go
+export PATH=$HOME/bin:$HOME/.local/bin:usr/local/bin:/usr/local/go/bin:$GOPATH/bin:$PATH
+
 export XDG_CONFIG_HOME=$HOME/dotfiles
+export EDITOR='nvim'
 export COLORTERM=truecolor
+
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
 export NVM_DIR="$HOME/.config/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 source $HOME/dotfiles/keybindings.zsh
 source $HOME/.config/powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/doc/fzf/examples/key-bindings.zsh
