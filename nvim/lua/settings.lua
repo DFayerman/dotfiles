@@ -25,7 +25,6 @@ opt.wrap = false
 opt.mouse = 'a'
 opt.clipboard = 'unnamedplus'
 
-opt.laststatus = 0
 opt.cmdheight = 2
 opt.updatetime = 150
 opt.timeoutlen = 250

@@ -11,7 +11,7 @@ export PATH=$HOME/bin:$HOME/.local/bin:usr/local/bin:/usr/local/go/bin:$GOPATH/b
 export XDG_CONFIG_HOME=$HOME/dotfiles
 export EDITOR='nvim'
 export COLORTERM=truecolor
-LS_COLORS=$LS_COLORS:'di=0;35'
+LS_COLORS=$LS_COLORS:'di=0;35:ow=0;35'
 export LS_COLORS
 
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
