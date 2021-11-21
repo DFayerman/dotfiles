@@ -2,6 +2,7 @@
 require('plugins')
 require('settings')
 require('keys')
+-- PLUGIN CONFIG
 require('lualine-config')
 require('lsp-config')
 require('cmp-config')
