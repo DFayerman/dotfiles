@@ -6,6 +6,11 @@ require('nvim-treesitter.configs').setup {
 	ensure_installed = {
 		"go",
 		"html",
-		"json"
+		"json",
+		"tsx",
+		"typescript",
+		"javascript",
+		"lua",
+		"css"
 	}
 }

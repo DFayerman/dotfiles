@@ -1,10 +1,14 @@
 local opt = vim.opt
 
+opt.background = 'dark'
+opt.termguicolors = true
+
 vim.cmd [[
 	colorscheme onedark
 	syntax on
 	filetype plugin indent on
 ]]
+
 opt.guicursor = 'i:block'
 opt.cursorline = true
 opt.number = true
@@ -33,9 +37,7 @@ opt.backup = false
 opt.writebackup = false
 opt.swapfile = false
 
-opt.background = 'dark'
-opt.termguicolors = true
-
 opt.completeopt = 'menuone,noselect'
+
 
 vim.g.python3_host_prog = '/usr/bin/python3.8'
