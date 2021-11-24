@@ -16,6 +16,7 @@ export LS_COLORS
 
 export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --follow -t d . $HOME'
 
 export NVM_DIR="$HOME/.config/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

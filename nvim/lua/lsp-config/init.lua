@@ -17,7 +17,7 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-
+	
 end
 
 -- configs.gopls = {
@@ -30,6 +30,8 @@ end
 -- 		settings = { };
 -- 	};
 -- }
+
+
 
 configs.ls_emmet = {
   default_config = {

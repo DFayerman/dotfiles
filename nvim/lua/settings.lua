@@ -39,5 +39,4 @@ opt.swapfile = false
 
 opt.completeopt = 'menuone,noselect'
 
-
 vim.g.python3_host_prog = '/usr/bin/python3.8'
