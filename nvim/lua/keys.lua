@@ -22,3 +22,5 @@ nmap('<TAB>',':bnext<CR>')
 nmap('<S-TAB>',':bprevious<CR>')
 -- fuzzy finder
 nmap('<C-p>',':Telescope find_files<CR>')
+-- VSCode-style close file (overrites viewport prefix)
+vim.api.nvim_set_keymap('n','<C-w>','len(getbufinfo({"buflisted":1})) == 1 ? ":wq<CR>" : ":w<CR>:bd<CR>"', {noremap = true, silent = true, expr = true})

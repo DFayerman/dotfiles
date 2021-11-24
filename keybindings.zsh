@@ -12,6 +12,11 @@ alias tmux="tmux -f ~/dotfiles/tmux.conf"
 # alias vnvim="$HOME/nvim.appimage"
 # alias nivm="$HOME/nvim.appimage"
 # alias bnvim="$HOME/nvim.appimage"
+alias vnvim="nvim"
+alias vim="nvim"
+alias bnvim="nvim"
+alias nv="nvim"
+
 
 updateGoLatest() {
 	cd /
