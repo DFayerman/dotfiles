@@ -1,5 +1,7 @@
 local opt = vim.opt
 
+-- set LEADER key here
+vim.g.mapleader = ' '
 opt.background = 'dark'
 opt.termguicolors = true
 

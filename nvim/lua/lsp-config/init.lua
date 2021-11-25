@@ -32,8 +32,6 @@ end
 -- 	};
 -- }
 
-
-
 configs.ls_emmet = {
   default_config = {
     cmd = { 'ls_emmet', '--stdio' };

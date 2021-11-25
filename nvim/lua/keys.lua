@@ -14,7 +14,6 @@ function vmap(shortcut, command)
   map('v', shortcut, command)
 end
 
-
 nmap('<C-s>',':wa<CR>')
 nmap('<C-c>','<Esc>')
 -- tab through buffers
