@@ -1,5 +1,5 @@
 local lspconfig = require'lspconfig'
-local configs = require'lspconfig/configs'
+local configs = require'lspconfig.configs'
 local nvim_cmp = require'cmp_nvim_lsp'
 	
 function goimports(timeout_ms)
@@ -69,7 +69,7 @@ configs.ls_emmet = {
   };
 }
 
-local servers = { 'gopls','html','tsserver', 'ls_emmet'}
+local servers = { 'gopls','html','tsserver','ls_emmet'}
 for _,lsp in ipairs(servers) do
 	lspconfig[lsp].setup {
 		on_attach = on_attach,

@@ -1,5 +1,4 @@
 # Cheat Sheet
-
 `Ctrl-a`: tmux PREFIX key
 
 ## In terminal window
@@ -27,7 +26,6 @@
 `Ctrl-w`: close current buffer, or close vim session if last buffer
 
 #### INSERT MODE
-
 
 
 

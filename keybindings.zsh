@@ -33,3 +33,12 @@ updateGoLatest() {
 	echo "updated to $(go version)"
 }
 
+fzf_find_and_open() {
+	file="$(fzf)"
+	cd $HOME/${file%/*}
+	nvim ${file//*\/}
+}
+
+bindkey -s '^f' 'fzf_find_and_open\n'
+
+

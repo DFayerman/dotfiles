@@ -14,8 +14,8 @@ export COLORTERM=truecolor
 LS_COLORS=$LS_COLORS:'di=0;35:ow=0;35'
 export LS_COLORS
 
-export FZF_DEFAULT_COMMAND='rg --hidden -l ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_COMMAND='fd --follow -t f -H -E go/ -E node_modules/ -E .git -E .config'
+# export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_ALT_C_COMMAND='fd --follow -t d . $HOME'
 
 export NVM_DIR="$HOME/.config/.nvm"
