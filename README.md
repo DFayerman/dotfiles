@@ -6,6 +6,8 @@
 
 `Ctrl-t`: get file path
 
+`Ctrl-f`: find file, move to parent directory & open file in vim
+
 `Ctrl-n`: tmux next window
 
 `Ctrl-d`: tmux close pane -> window -> session
@@ -18,6 +20,7 @@
 
 `PREFIX 1 - 5`: tmux jump to window 1 - 5
 
+
 ## In [Neo]vim
 #### NORMAL MODE
 
@@ -26,7 +29,7 @@
 `Ctrl-w`: close current buffer, or close vim session if last buffer
 
 #### INSERT MODE
-
+`Ctrl-c`: go to NORMAL mode
 
 
 ## Plugins 
