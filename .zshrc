@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export GOPATH=$HOME/go
-export PATH=$HOME/bin:$HOME/.local/bin:usr/local/bin:/usr/local/go/bin:$GOPATH/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:usr/local/bin:$HOME/.cargo/bin:/usr/local/go/bin:$GOPATH/bin:$PATH
 
 export XDG_CONFIG_HOME=$HOME/dotfiles
 export EDITOR='nvim'

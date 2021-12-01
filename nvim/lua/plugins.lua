@@ -2,7 +2,7 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin','~/.config/nvim/plugged')
 
--- LSP + completion + snippets + autopair
+-- LSP + completion + snippets
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -10,12 +10,21 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
+
+-- autopair
 Plug 'windwp/nvim-autopairs'
 
 -- Treesitter
 Plug('nvim-treesitter/nvim-treesitter', {
 	['do'] = function()
 		vim.call(':TSUpdate')
+	end
+})
+
+-- markdown preview
+Plug('iamcco/markdown-preview.nvim', {
+	['do'] = function()
+		os.execute "cd app && yarn install"
 	end
 })
 

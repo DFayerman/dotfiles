@@ -23,13 +23,17 @@
 
 ## In [Neo]vim
 #### NORMAL MODE
-
-`Ctrl-p`: fuzzy finder [Telescope]
+`Ctrl-p`: telecope fuzzy finder 
 
 `Ctrl-w`: close current buffer, or close vim session if last buffer
+
+`gcc`: vim-commentary comment out whole line
+
 
 #### INSERT MODE
 `Ctrl-c`: go to NORMAL mode
 
 
 ## Plugins 
+[tpope/vim-surround](https://github.com/tpope/vim-surround)
+[tpope/vim-commentary](https://github.com/tpope/vim-commentary)

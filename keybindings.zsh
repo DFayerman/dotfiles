@@ -5,6 +5,7 @@ alias update="sudo apt update && sudo -S apt -y upgrade"
 alias l="ls -sh1FAur --group-directories-first --color=auto"
 alias ~="cd ~"
 alias cdc="cd ~/code"
+alias cdo="cd /mnt/c/Users/david/OneDrive/content"
 alias tmux="tmux -f ~/dotfiles/tmux.conf"
 
 ## Neovim aliases for sanity
