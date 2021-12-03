@@ -11,6 +11,11 @@ ls.snippets = {
 			t({ 'if err != nil {', '\t' }),
 			i(0),
 			t({"","}"})
+		}),
+		s('fmain', {
+			t({'func main() {', '\t'}),
+			i(0),
+			t({"","}"})
 		})
 	}
 }

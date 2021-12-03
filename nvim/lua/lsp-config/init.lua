@@ -62,19 +62,30 @@ end
 -- 	};
 -- }
 
-configs.ls_emmet = {
-  default_config = {
-    cmd = { 'ls_emmet', '--stdio' };
-    filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'haml',
-      'xml', 'xsl', 'pug', 'slim', 'sass', 'stylus', 'less', 'sss'};
-    root_dir = function(fname)
-      return vim.loop.cwd()
-    end;
-    settings = {};
-  };
+-- configs.ls_emmet = {
+--   default_config = {
+--     cmd = { 'ls_emmet', '--stdio' };
+--     filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'haml',
+--       'xml', 'xsl', 'pug', 'slim', 'sass', 'stylus', 'less', 'sss'};
+--     root_dir = function(fname)
+--       return vim.loop.cwd()
+--     end;
+--     settings = {};
+--   };
+-- }
+
+configs.emmet_ls = {    
+	default_config = {    
+		cmd = {'emmet-ls', '--stdio'};
+		filetypes = {'html', 'blade'};
+		root_dir = function(fname)    
+			return vim.loop.cwd()
+		end;    
+		settings = {};    
+	};    
 }
 
-local servers = { 'gopls','html','tsserver','ls_emmet', 'rust_analyzer'}
+local servers = { 'gopls','html','tsserver','cssls', 'rust_analyzer',"emmet_ls"}
 for _,lsp in ipairs(servers) do
 	lspconfig[lsp].setup {
 		on_attach = on_attach,
