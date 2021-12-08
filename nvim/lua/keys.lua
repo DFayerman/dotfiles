@@ -14,6 +14,10 @@ function vmap(shortcut, command)
   map('v', shortcut, command)
 end
 
+function tmap(shortcut, command)
+	map('t', shortcut, command)
+end
+
 -- basic
 nmap('<C-s>',':wa<CR>')
 nmap('<C-c>','<Esc>')
@@ -23,4 +27,6 @@ nmap('<S-TAB>',':bprevious<CR>')
 -- fuzzy finder
 nmap('<C-p>',':Telescope find_files<CR>')
 -- VSCode-style close file (overrites viewport prefix)
-vim.api.nvim_set_keymap('n','<C-w>','len(getbufinfo({"buflisted":1})) == 1 ? ":wq<CR>" : ":w<CR>:bd<CR>"', {noremap = true, silent = true, expr = true})
+vim.api.nvim_set_keymap('n','<C-w>',[[ len(getbufinfo({"buflisted":1})) == 1 ? ":wq<CR>" : &buftype ==# "terminal" ? ":bd!<CR>" : ":w<CR>:bd<CR>"]], {noremap = true, silent = true, expr = true})
+-- Neovim built-in terminal emulator mappings
+tmap('<Esc>','<C-\\><C-n>')

@@ -39,6 +39,6 @@ opt.backup = false
 opt.writebackup = false
 opt.swapfile = false
 
-opt.completeopt = 'menuone,noselect'
+opt.completeopt = 'menu,menuone'
 
 vim.g.python3_host_prog = '/usr/bin/python3.8'
