@@ -24,6 +24,8 @@ nmap('<C-c>','<Esc>')
 -- tab through buffers
 nmap('<TAB>',':bnext<CR>')
 nmap('<S-TAB>',':bprevious<CR>')
+-- open terminal + jump to current file's directory
+nmap('<M-`>', ':let $VIM_DIR=expand("%:p:h")<CR>:terminal<CR>acd $VIM_DIR<CR>clear<CR>')
 -- fuzzy finder
 nmap('<C-p>',':Telescope find_files<CR>')
 -- VSCode-style close file (overrites viewport prefix)

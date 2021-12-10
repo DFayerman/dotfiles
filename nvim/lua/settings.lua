@@ -6,9 +6,9 @@ opt.background = 'dark'
 opt.termguicolors = true
 
 vim.cmd [[
-	colorscheme onedark
 	syntax on
 	filetype plugin indent on
+	autocmd vimenter * ++nested colorscheme gruvbox
 ]]
 
 opt.guicursor = 'i:block'

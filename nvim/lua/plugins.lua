@@ -31,9 +31,10 @@ Plug('iamcco/markdown-preview.nvim', {
 -- airline (lualine)
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
---
+
 -- colorscheme
-Plug 'joshdick/onedark.vim'
+-- Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
 
 -- fuzzy finder
 Plug 'nvim-lua/plenary.nvim'

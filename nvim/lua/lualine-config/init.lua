@@ -10,9 +10,9 @@ require( 'lualine' ).setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff',
-                  {'diagnostics', sources={'nvim_lsp'}}},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', { 'filetype', colored = true}},
+                  {'diagnostics', sources={'nvim_diagnostic'}}},
+    lualine_c = {'filename', {'filetype', colored = true}},
+    lualine_x = {'encoding', 'fileformat'},
     -- lualine_y = {'progress'},
     lualine_z = {'location'}
   },

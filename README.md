@@ -29,6 +29,8 @@
 
 `gcc`: vim-commentary comment out whole line
 
+`` Alt-` ``: open built-in terminal, jump to current file's directory
+
 
 #### INSERT MODE
 `Ctrl-c`: go to NORMAL mode
