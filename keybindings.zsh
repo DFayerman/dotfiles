@@ -1,3 +1,5 @@
+# aliases
+
 alias mkdir="mkdir -pv";
 alias c="clear";
 alias wget="wget -c";
@@ -22,7 +24,10 @@ alias vnvim="nvim"
 alias vim="nvim"
 alias bnvim="nvim"
 alias nv="nvim"
+alias nvi="nvim"
 
+
+# functions
 
 updateGoLatest() {
 	cd /
@@ -39,6 +44,8 @@ fzf_find_and_open() {
 	cd $HOME/${file%/*}
 	nvim ${file//*\/}
 }
+
+# keybindings
 
 bindkey -s '^f' 'fzf_find_and_open\n'
 

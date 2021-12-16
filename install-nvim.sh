@@ -1,10 +1,6 @@
-# where's istalled current version?
+# install Neovim nightly or upgrade
 which nvim
-
-# what's current version?
 nvim -v
-
-# make tmp folder
 mkdir -p ~/tmp
 cd ~/tmp
 
@@ -21,4 +17,4 @@ make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 
 # run
-nvimn
+nvim
