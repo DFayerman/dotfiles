@@ -16,7 +16,7 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-		['<C-Space>'] = cmp.mapping.complete(),
+		['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i','c'}),
 		['<Tab>'] = function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -26,7 +26,6 @@ cmp.setup {
         fallback()
       end
     end,
-
     ['<S-Tab>'] = function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -36,32 +35,14 @@ cmp.setup {
         fallback()
       end
     end
-
   },
-
 	sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'path' },
     { name = 'buffer' },
-  },
+	},
 }
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-	sources = {
-		{ name = 'buffer' }
-	}
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-	sources = cmp.config.sources({
-		{ name = 'path' }
-	}, {
-		{ name = 'cmdline' }
-	})
-})
-
-cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
+cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({ map_char = { tex = '' } }))
 

@@ -6,9 +6,7 @@ opt.background = 'dark'
 opt.termguicolors = true
 
 vim.cmd [[
-	syntax on
 	filetype plugin indent on
-	autocmd vimenter * ++nested colorscheme gruvbox
 ]]
 
 opt.guicursor = 'i:block'
@@ -42,3 +40,5 @@ opt.swapfile = false
 opt.completeopt = 'menu,menuone'
 
 vim.g.python3_host_prog = '/usr/bin/python3.8'
+
+global = {}

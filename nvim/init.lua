@@ -2,10 +2,13 @@
 require('plugins')
 require('settings')
 require('keys')
--- PLUGIN CONFIG
-require('lualine-config')
-require('lsp-config')
-require('cmp-config')
-require('treesitter-config')
-require('autopair-config')
-require('luasnips-config')
+
+-- below errors if not run last after plugins loaded
+vim.cmd [[
+	syntax on
+	autocmd vimenter * ++nested colorscheme gruvbox
+	augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost lua/plugins/init.lua source <afile> | PackerCompile
+  augroup end
+]]

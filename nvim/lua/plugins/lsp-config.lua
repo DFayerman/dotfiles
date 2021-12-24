@@ -5,6 +5,13 @@ local null_ls = require'null-ls'
 local ts_utils = require("nvim-lsp-ts-utils")
 local b = null_ls.builtins
 
+local border_opts = { border = "single", focusable = false, scope = "line" }
+
+vim.diagnostic.config({ virtual_text = false, float = border_opts })
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, border_opts)
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, border_opts)
+
 -- remap helper
 local bufmap = function(bufnr, mode, lhs, rhs, opts)
     vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
@@ -23,7 +30,6 @@ function goimports(timeout_ms)
     local actions = result[1].result
     if not actions then return end
     local action = actions[1]
-
     if action.edit or type(action.command) == "table" then
       if action.edit then
         vim.lsp.util.apply_workspace_edit(action.edit)
@@ -38,6 +44,42 @@ end
 
 vim.api.nvim_exec([[ autocmd BufWritePre *.go lua goimports(1000) ]], false)
 
+local preferred_formatting_clients = { "eslint" }
+local fallback_formatting_client = "null-ls"
+
+local formatting = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+
+    local selected_client
+    for _, client in ipairs(vim.lsp.get_active_clients()) do
+        if vim.tbl_contains(preferred_formatting_clients, client.name) then
+            selected_client = client
+            break
+        end
+
+        if client.name == fallback_formatting_client then
+            selected_client = client
+        end
+    end
+
+    if not selected_client then
+        return
+    end
+
+    local params = vim.lsp.util.make_formatting_params()
+    local result, err = selected_client.request_sync("textDocument/formatting", params, 5000, bufnr)
+    if result and result.result then
+        vim.lsp.util.apply_text_edits(result.result, bufnr)
+    elseif err then
+        vim.notify("global.lsp.formatting: " .. err, vim.log.levels.WARN)
+    end
+end
+
+global.lsp = {
+    border_opts = border_opts,
+    formatting = formatting,
+}
+
 -- capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = nvim_cmp.update_capabilities(capabilities)
@@ -49,14 +91,14 @@ local on_attach = function(client, bufnr)
   bufmap(bufnr,'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   bufmap(bufnr,'n', '<Leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 	bufmap(bufnr,'i', '<C-x>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-	bufmap(bufnr,'n','<Leader>a', '<cmd>lua vim.diagnostic.open_float()<CR>',opts)
+	bufmap(bufnr,'n','<Leader>a', '<cmd>lua vim.diagnostic.open_float(nil,global.lsp.border_opts)<CR>',opts)
 	-- bufmap('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 	-- bufmap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   -- bufmap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   -- bufmap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
 	if client.resolved_capabilities.document_formatting then
-			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+			vim.cmd("autocmd BufWritePre <buffer> lua global.lsp.formatting()")
 	end
 end
 
@@ -80,10 +122,13 @@ lspconfig.tsserver.setup {
 			on_attach(client, bufnr)
 			client.resolved_capabilities.document_formatting = false
 			client.resolved_capabilities.document_range_formatting = false
-			ts_utils.setup({})
+			ts_utils.setup({
+				update_imports_on_move = true,
+				filter_out_diagnostics_by_code = { 80001 },
+			})
 			ts_utils.setup_client(client)
 			bufmap(bufnr, "n", "gs", ":TSLspOrganize<CR>")
-			bufmap(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
+			bufmap(bufnr, "n", "gI", ":TSLspRenameFile<CR>")
 			bufmap(bufnr, "n", "go", ":TSLspImportAll<CR>")
     end,
 		capabilities = capabilities,
@@ -96,16 +141,12 @@ local sources = {
 	b.formatting.prettier.with({
 		disabled_filetypes = {"typescript","typescriptreact"}
 	}),
-	null_ls.builtins.diagnostics.eslint_d,
-	null_ls.builtins.code_actions.eslint_d,
+	b.diagnostics.eslint_d,
+	b.code_actions.eslint_d,
 }
 
 null_ls.setup({
-    sources = {
-        null_ls.builtins.diagnostics.eslint_d,
-        null_ls.builtins.code_actions.eslint_d,
-        null_ls.builtins.formatting.prettier,
-    },
+    sources = sources,
     on_attach = on_attach,
 })
 

@@ -15,5 +15,7 @@ require('nvim-treesitter.configs').setup {
 		"rust",
 		"python",
 		"regex"
-	}
+	},
+	autopairs = {enable = true},
+	autotag = {enable = true},
 }
