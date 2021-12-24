@@ -1,7 +1,18 @@
 local lspconfig = require'lspconfig'
 local configs = require'lspconfig.configs'
 local nvim_cmp = require'cmp_nvim_lsp'
-	
+local null_ls = require'null-ls'
+local ts_utils = require("nvim-lsp-ts-utils")
+local b = null_ls.builtins
+
+-- remap helper
+local bufmap = function(bufnr, mode, lhs, rhs, opts)
+    vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
+        silent = true,
+    })
+end
+
+-- golang import on save
 function goimports(timeout_ms)
     local context = { only = { "source.organizeImports" } }
     vim.validate { context = { context, "t", true } }
@@ -27,46 +38,33 @@ end
 
 vim.api.nvim_exec([[ autocmd BufWritePre *.go lua goimports(1000) ]], false)
 
+-- capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = nvim_cmp.update_capabilities(capabilities)
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.preselectSupport = true
-capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
-capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
 
+-- custom on_attach (mappings)
 local on_attach = function(client, bufnr)
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-
 	local opts = { noremap=true, silent=true }
+  bufmap(bufnr,'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  bufmap(bufnr,'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  bufmap(bufnr,'n', '<Leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+	bufmap(bufnr,'i', '<C-x>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+	bufmap(bufnr,'n','<Leader>a', '<cmd>lua vim.diagnostic.open_float()<CR>',opts)
+	-- bufmap('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+	-- bufmap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  -- bufmap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  -- bufmap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 
-	buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-	buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-	buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-  buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-  buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
+	if client.resolved_capabilities.document_formatting then
+			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+	end
 end
 
--- configs.gopls = {
--- 	default_config = {
--- 	 cmd = { "gopls" };
---     filetypes = { "go", "gomod" };
---     root_dir = function(fname)
---       return util.root_pattern 'go.work'(fname) or util.root_pattern('go.mod', '.git')(fname)
---     end;
--- 		settings = { };
--- 	};
--- }
-
+-- emmet server config
 configs.ls_emmet = {
   default_config = {
     cmd = { 'ls_emmet', '--stdio' };
-    filetypes = { 'html', 'css', 'scss', 'javascriptreact', 'typescript', 'typescriptreact', 'haml',
-      'xml', 'xsl', 'pug', 'slim', 'sass', 'stylus', 'less', 'sss'};
+    filetypes = { 'html', 'css', 'scss', 'javascriptreact', 'typescript', 'typescriptreact', 'xml', 'pug', 'sass'};
     root_dir = function(fname)
       return vim.loop.cwd()
     end;
@@ -74,19 +72,54 @@ configs.ls_emmet = {
   };
 }
 
--- configs.emmet_ls = {    
--- 	default_config = {    
--- 		cmd = {'emmet-ls', '--stdio'};
--- 		filetypes = {'html', 'blade'};
--- 		root_dir = function(fname)    
--- 			return vim.loop.cwd()
--- 		end;    
--- 		settings = {};    
--- 	};    
--- }
+-- typescript server setup
+lspconfig.tsserver.setup {
+	root_dir = lspconfig.util.root_pattern("package.json"),
+	init_options = ts_utils.init_options,
+	on_attach=function(client, bufnr)
+			on_attach(client, bufnr)
+			client.resolved_capabilities.document_formatting = false
+			client.resolved_capabilities.document_range_formatting = false
+			ts_utils.setup({})
+			ts_utils.setup_client(client)
+			bufmap(bufnr, "n", "gs", ":TSLspOrganize<CR>")
+			bufmap(bufnr, "n", "gi", ":TSLspRenameFile<CR>")
+			bufmap(bufnr, "n", "go", ":TSLspImportAll<CR>")
+    end,
+		capabilities = capabilities,
+		flags = {
+			debounce_text_changes = 150,
+		}
+}
 
-local servers = { 'gopls','html','tsserver','cssls', 'rust_analyzer',"ls_emmet"}
-for _,lsp in ipairs(servers) do
+local sources = {
+	b.formatting.prettier.with({
+		disabled_filetypes = {"typescript","typescriptreact"}
+	}),
+	null_ls.builtins.diagnostics.eslint_d,
+	null_ls.builtins.code_actions.eslint_d,
+}
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.diagnostics.eslint_d,
+        null_ls.builtins.code_actions.eslint_d,
+        null_ls.builtins.formatting.prettier,
+    },
+    on_attach = on_attach,
+})
+
+for _,lsp in ipairs({ 
+	'gopls',
+	'html',
+	-- 'tsserver',
+	'cssls', 
+	'rust_analyzer',
+	"ls_emmet",
+	'eslint',
+	'tailwindcss',
+})
+do
 	lspconfig[lsp].setup {
 		on_attach = on_attach,
 		capabilities = capabilities,

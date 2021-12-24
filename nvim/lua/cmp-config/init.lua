@@ -2,18 +2,15 @@ local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
-
 cmp.setup {
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
 		end,
 	},
-
 	completion = {
 		keyword_length = 2
 	},
-
 	mapping = {
 		['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
@@ -49,6 +46,22 @@ cmp.setup {
     { name = 'buffer' },
   },
 }
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+	sources = {
+		{ name = 'buffer' }
+	}
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+	sources = cmp.config.sources({
+		{ name = 'path' }
+	}, {
+		{ name = 'cmdline' }
+	})
+})
 
 cmp.event:on( 'confirm_done', cmp_autopairs.on_confirm_done({  map_char = { tex = '' } }))
 

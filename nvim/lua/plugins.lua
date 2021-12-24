@@ -4,6 +4,8 @@ vim.call('plug#begin','~/.config/nvim/plugged')
 
 -- LSP + completion + snippets
 Plug 'neovim/nvim-lspconfig'
+Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -43,5 +45,8 @@ Plug 'nvim-telescope/telescope.nvim'
 -- fast comment and brace-surround mappings
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+
+-- speed up Neovim runtime
+Plug 'nathom/filetype.nvim'
 
 vim.call('plug#end')
