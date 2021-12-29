@@ -5,7 +5,11 @@ local null_ls = require'null-ls'
 local ts_utils = require("nvim-lsp-ts-utils")
 local b = null_ls.builtins
 
-local border_opts = { border = "single", focusable = false, scope = "line" }
+local border_opts = { 
+	border = "rounded",
+	focusable = false,
+	scope = "line" 
+}
 
 vim.diagnostic.config({ virtual_text = false, float = border_opts })
 
@@ -19,53 +23,48 @@ local bufmap = function(bufnr, mode, lhs, rhs, opts)
     })
 end
 
--- golang import on save
-function goimports(timeout_ms)
-    local context = { only = { "source.organizeImports" } }
-    vim.validate { context = { context, "t", true } }
-    local params = vim.lsp.util.make_range_params()
-    params.context = context
-    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-    if not result or next(result) == nil then return end
-    local actions = result[1].result
-    if not actions then return end
-    local action = actions[1]
-    if action.edit or type(action.command) == "table" then
-      if action.edit then
-        vim.lsp.util.apply_workspace_edit(action.edit)
-      end
-      if type(action.command) == "table" then
-        vim.lsp.buf.execute_command(action.command)
-      end
-    else
-      vim.lsp.buf.execute_command(action)
-    end
-end
+-- -- golang import on save
+-- function goimports(timeout_ms)
+--     local context = { only = { "source.organizeImports" } }
+--     vim.validate { context = { context, "t", true } }
+--     local params = vim.lsp.util.make_range_params()
+--     params.context = context
+--     local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
+--     if not result or next(result) == nil then return end
+--     local actions = result[1].result
+--     if not actions then return end
+--     local action = actions[1]
+--     if action.edit or type(action.command) == "table" then
+--       if action.edit then
+--         vim.lsp.util.apply_workspace_edit(action.edit)
+--       end
+--       if type(action.command) == "table" then
+--         vim.lsp.buf.execute_command(action.command)
+--       end
+--     else
+--       vim.lsp.buf.execute_command(action)
+--     end
+-- end
 
-vim.api.nvim_exec([[ autocmd BufWritePre *.go lua goimports(1000) ]], false)
+-- vim.api.nvim_exec([[ autocmd BufWritePre *.go lua goimports(1000) ]], false)
 
-local preferred_formatting_clients = { "eslint" }
+local preferred_formatting_clients = { "eslint_d","tsserver" }
 local fallback_formatting_client = "null-ls"
-
 local formatting = function()
     local bufnr = vim.api.nvim_get_current_buf()
-
     local selected_client
     for _, client in ipairs(vim.lsp.get_active_clients()) do
         if vim.tbl_contains(preferred_formatting_clients, client.name) then
             selected_client = client
             break
         end
-
         if client.name == fallback_formatting_client then
             selected_client = client
         end
     end
-
     if not selected_client then
         return
     end
-
     local params = vim.lsp.util.make_formatting_params()
     local result, err = selected_client.request_sync("textDocument/formatting", params, 5000, bufnr)
     if result and result.result then
@@ -77,12 +76,14 @@ end
 
 global.lsp = {
     border_opts = border_opts,
-    formatting = formatting,
+    formatting = formatting
 }
 
 -- capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = nvim_cmp.update_capabilities(capabilities)
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 
 -- custom on_attach (mappings)
 local on_attach = function(client, bufnr)
@@ -96,7 +97,6 @@ local on_attach = function(client, bufnr)
 	-- bufmap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   -- bufmap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   -- bufmap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-
 	if client.resolved_capabilities.document_formatting then
 			vim.cmd("autocmd BufWritePre <buffer> lua global.lsp.formatting()")
 	end
@@ -106,7 +106,7 @@ end
 configs.ls_emmet = {
   default_config = {
     cmd = { 'ls_emmet', '--stdio' };
-    filetypes = { 'html', 'css', 'scss', 'javascriptreact', 'typescript', 'typescriptreact', 'xml', 'pug', 'sass'};
+    filetypes = { 'html', 'css', 'scss', 'javascriptreact', 'typescriptreact', 'xml', 'pug', 'sass'};
     root_dir = function(fname)
       return vim.loop.cwd()
     end;
@@ -114,14 +114,13 @@ configs.ls_emmet = {
   };
 }
 
+
 -- typescript server setup
 lspconfig.tsserver.setup {
 	root_dir = lspconfig.util.root_pattern("package.json"),
 	init_options = ts_utils.init_options,
 	on_attach=function(client, bufnr)
 			on_attach(client, bufnr)
-			client.resolved_capabilities.document_formatting = false
-			client.resolved_capabilities.document_range_formatting = false
 			ts_utils.setup({
 				update_imports_on_move = true,
 				filter_out_diagnostics_by_code = { 80001 },
@@ -137,12 +136,41 @@ lspconfig.tsserver.setup {
 		}
 }
 
+-- eslint setup 
+-- lspconfig.eslint.setup({
+-- 		root_dir = lspconfig.util.root_pattern(".eslintrc", ".eslintrc.js"),
+-- 		on_attach = function(client, bufnr)
+-- 				client.resolved_capabilities.document_formatting = true
+-- 				on_attach(client, bufnr)
+-- 		end,
+-- 		capabilities = capabilities,
+-- 		settings = {
+-- 				format = {
+-- 						enable = true,
+-- 				},
+-- 		},
+-- 		flags = {
+-- 			debounce_text_changes = 150,
+-- 		},
+-- })
+
+-- null-ls setup
 local sources = {
 	b.formatting.prettier.with({
-		disabled_filetypes = {"typescript","typescriptreact"}
+		disabled_filetypes = {
+			"typescript",
+			"typescriptreact",
+			"javascript",
+			"javascriptreact"
+		}
 	}),
-	b.diagnostics.eslint_d,
-	b.code_actions.eslint_d,
+	-- b.diagnostics.markdownlint,
+	b.hover.dictionary,
+	b.formatting.goimports,
+	b.formatting.sqlformat.with({
+		extra_args = {"-a"}
+	}),
+	b.formatting.stylua,
 }
 
 null_ls.setup({
@@ -157,8 +185,9 @@ for _,lsp in ipairs({
 	'cssls', 
 	'rust_analyzer',
 	"ls_emmet",
-	'eslint',
+	-- 'eslint',
 	'tailwindcss',
+	'pyright'
 })
 do
 	lspconfig[lsp].setup {
@@ -168,4 +197,14 @@ do
 			debounce_text_changes = 150,
 		},
 	}
+end
+
+-- suppress lspconfig messages
+local notify = vim.notify
+vim.notify = function(msg, ...)
+    if msg:match("%[lspconfig%]") then
+        return
+    end
+
+    notify(msg, ...)
 end

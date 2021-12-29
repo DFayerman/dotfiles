@@ -9,6 +9,7 @@ alias ~="cd ~"
 alias cdc="cd ~/code"
 alias cdo="cd /mnt/c/Users/david/OneDrive/content"
 alias tmux="tmux -f ~/dotfiles/tmux.conf"
+alias excel="/mnt/c/Program\ Files/Microsoft\ Office/root/Office16/EXCEL.EXE"
 
 ## Neovim aliases for sanity
 

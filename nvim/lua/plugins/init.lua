@@ -1,3 +1,12 @@
+-- local packer_install_dir = vim.g.package_home .. "/opt/packer.nvim"
+
+-- Auto-install packer in case it hasn't been installed.
+-- if vim.fn.glob(packer_install_dir) == "" then
+--   vim.api.nvim_echo({ { "Installing packer.nvim", "Type" } }, true, {})
+--   vim.cmd(install_cmd)
+-- end
+
+
 vim.cmd("packadd packer.nvim")
 return require("packer").startup(function()
 	use { "wbthomason/packer.nvim", opt = true }
