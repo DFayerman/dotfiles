@@ -1,3 +1,4 @@
+global = {}
 -- ROOT CONFIG INIT
 require('plugins')
 require('settings')

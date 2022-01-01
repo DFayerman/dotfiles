@@ -168,7 +168,7 @@ local sources = {
 	b.hover.dictionary,
 	b.formatting.goimports,
 	b.formatting.sqlformat.with({
-		extra_args = {"-a"}
+		extra_args = { "-a" }
 	}),
 	b.formatting.stylua,
 }

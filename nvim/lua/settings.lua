@@ -41,4 +41,3 @@ opt.completeopt = 'menu,menuone'
 
 vim.g.python3_host_prog = '/usr/bin/python3.8'
 
-global = {}

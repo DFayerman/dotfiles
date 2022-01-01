@@ -27,7 +27,6 @@ alias bnvim="nvim"
 alias nv="nvim"
 alias nvi="nvim"
 
-
 # functions
 
 updateGoLatest() {
