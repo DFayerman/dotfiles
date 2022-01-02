@@ -26,9 +26,11 @@ return require("packer").startup(function()
 		config = [[require('plugins.lualine-config')]],
 	})
 
-	-- fast comment and brace-surround mappings
+	-- fast comment, bracket text subjects and motions, helpful commands for file system + Git from Pope Daddy himself
 	use("tpope/vim-surround")
 	use("tpope/vim-commentary")
+	use("tpope/vim-eunuch")
+	use("tpope/vim-fugitive")
 
 	-- LSP
 	use({
