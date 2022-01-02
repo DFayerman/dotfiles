@@ -4,12 +4,13 @@ nvim -v
 mkdir -p ~/tmp
 cd ~/tmp
 
-if [-d "neovim"]; then
-	cd neovim
-	git pull
+if [ -d "neovim" ]
+then
+cd neovim
+git pull
 else
-	git clone --depth 1 --branch nightly https://github.com/neovim/neovim.git
-	cd neovim
+git clone --depth 1 --branch nightly https://github.com/neovim/neovim.git
+cd neovim
 fi
 
 # build and install
