@@ -1,8 +1,4 @@
 require('nvim-treesitter.configs').setup {
-	highlight = {
-    enable = true,
-		disable = {'html'}
-  },
 	ensure_installed = {
 		"go",
 		"html",
@@ -16,6 +12,10 @@ require('nvim-treesitter.configs').setup {
 		"python",
 		"regex"
 	},
+	highlight = {
+    enable = true,
+		disable = {'html', 'css'}
+  },
 	autopairs = {enable = true},
 	autotag = {enable = true},
 }

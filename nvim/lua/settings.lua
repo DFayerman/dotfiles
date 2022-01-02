@@ -2,6 +2,7 @@ local opt = vim.opt
 
 -- set LEADER key here
 vim.g.mapleader = ' '
+opt.encoding = 'utf-8'
 opt.background = 'dark'
 opt.termguicolors = true
 
@@ -21,6 +22,7 @@ opt.ignorecase = true
 
 opt.tabstop = 2
 opt.softtabstop = 2
+opt.shiftround = true
 opt.shiftwidth = 2
 opt.smarttab = true
 opt.autoindent = true

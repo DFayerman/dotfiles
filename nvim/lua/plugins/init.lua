@@ -6,79 +6,124 @@
 --   vim.cmd(install_cmd)
 -- end
 
-
 vim.cmd("packadd packer.nvim")
 return require("packer").startup(function()
-	use { "wbthomason/packer.nvim", opt = true }
-	
--- fast comment and brace-surround mappings
-	use('tpope/vim-surround')
-	use('tpope/vim-commentary')
+	use({ "wbthomason/packer.nvim", opt = true })
 
--- LSP
-	use {
+	-- speed up Neovim runtime
+	use({
+		"nathom/filetype.nvim",
+		config = [[require('plugins.filetype-config')]],
+	})
+
+	use({ "kyazdani42/nvim-web-devicons" })
+
+	-- statusline
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		event = "VimEnter",
+		config = [[require('plugins.lualine-config')]],
+	})
+
+	-- fast comment and brace-surround mappings
+	use("tpope/vim-surround")
+	use("tpope/vim-commentary")
+
+	-- LSP
+	use({
 		"neovim/nvim-lspconfig",
 		config = [[require('plugins.lsp-config')]],
-	}
-	use('jose-elias-alvarez/null-ls.nvim')
-	use('jose-elias-alvarez/nvim-lsp-ts-utils')
+	})
+	use("jose-elias-alvarez/null-ls.nvim")
+	use("jose-elias-alvarez/nvim-lsp-ts-utils")
 
--- snippets
-	use { 
-		'L3MON4D3/LuaSnip',
+	-- snippets
+	use({
+		"L3MON4D3/LuaSnip",
 		config = [[require('plugins.luasnips-config') ]],
-	}
+	})
 
--- completion
-	use {
+	-- json schemastore (open source project) autocompletion
+	use("b0o/schemastore.nvim")
+
+	-- autopair
+	use({
+		"windwp/nvim-autopairs",
+		-- after = 'nvim-cmp',
+		config = [[require('plugins.autopair-config')]],
+	})
+
+	use({
+		"windwp/nvim-ts-autotag",
+		config = [[require('plugins.ts-autotag-config')]],
+	})
+
+	-- completion
+	use({
 		"hrsh7th/nvim-cmp",
 		requires = {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
-			'saadparwaiz1/cmp_luasnip',
+			"saadparwaiz1/cmp_luasnip",
+			"hrsh7th/cmp-nvim-lua",
 		},
 		config = [[require('plugins.cmp-config')]],
-	}
+	})
 
--- autopair
-	use {
-		'windwp/nvim-autopairs',
-		config = [[require('plugins.autopair-config')]],
-	}
+	-- use {
+	-- 	'ap/vim-css-color',
+	-- }
 
--- Treesitter
-	use { 
-		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate',
+	-- use {
+	--  "norcalli/nvim-colorizer.lua",
+	-- 	-- event = "BufReadPre",
+	-- 	-- config = [[require('plugins.colorizer-config')]],
+	-- }
+
+	-- treesitter
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
 		config = [[require('plugins.treesitter-config')]],
-	}
+	})
 
--- markdown preview
-	use {
-		'iamcco/markdown-preview.nvim', 
-		run = 'cd app && yarn install', 
-		cmd = 'MarkdownPreview'
-	}
+	-- use('nvim-treesitter/nvim-treesitter-textsubjects')
 
--- airline (lualine)
-	use {
-		'nvim-lualine/lualine.nvim',
-		requires = {'kyazdani42/nvim-web-devicons', opt = true},
-		config = [[require('plugins.lualine-config')]],
-	}
+	-- highlight current word and other instances
+	use("RRethy/vim-illuminate")
 
--- colorscheme
-	use('morhetz/gruvbox')
+	use({
+		"lukas-reineke/headlines.nvim",
+		config = [[require('plugins.headlines-config')]],
+	})
 
--- fuzzy finder
-	use('nvim-telescope/telescope.nvim')
-	use('nvim-lua/plenary.nvim') -- loaded on its own because it may be used by other plugins
+	use({
+		"lukas-reineke/indent-blankline.nvim",
+		config = [[require('plugins.indent-blankline-config')]],
+	})
 
--- speed up Neovim runtime
-	use('nathom/filetype.nvim')
+	-- markdown preview
+	-- use {
+	-- 	'iamcco/markdown-preview.nvim',
+	-- 	run = 'cd app && yarn install',
+	-- 	cmd = 'MarkdownPreview'
+	-- }
 
+	-- fuzzy finder
+	use({
+		"nvim-telescope/telescope.nvim",
+		requires = {
+			{
+				"nvim-telescope/telescope-fzf-native.nvim",
+				run = "make",
+			},
+		},
+	})
+
+	use("nvim-lua/plenary.nvim") -- loaded on its own because it may be used by other plugins
+
+	-- colorscheme
+	use("morhetz/gruvbox")
 end)
-
-
-

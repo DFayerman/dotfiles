@@ -4,6 +4,7 @@ require('plugins')
 require('settings')
 require('keys')
 
+
 -- below errors if not run last after plugins loaded
 vim.cmd [[
 	syntax on

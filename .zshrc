@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export GOPATH=$HOME/go
-export PATH=$HOME/bin:$HOME/.local/bin:usr/local/bin:$HOME/.cargo/bin:/usr/local/go/bin:$GOPATH/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:$HOME/.cargo/bin:usr/local/bin:$HOME/.cargo/bin:/usr/local/go/bin:$GOPATH/bin:$PATH
 
 export XDG_CONFIG_HOME=$HOME/dotfiles
 export EDITOR='nvim'
@@ -24,6 +24,6 @@ source $HOME/dotfiles/keybindings.zsh
 source $HOME/.config/powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f $HOME/.config/.p10k.zsh ]] || source $HOME/.config/.p10k.zsh
+
 cd ~
