@@ -3,13 +3,16 @@
 alias mkdir="mkdir -pv";
 alias c="clear";
 alias wget="wget -c";
-alias update="sudo apt update && sudo -S apt -y upgrade"
+# alias update="sudo apt update && sudo -S apt -y upgrade"
 alias l="ls -sh1FAur --group-directories-first --color=auto"
 alias ~="cd ~"
 alias cdc="cd ~/code"
 alias cdo="cd /mnt/c/Users/david/OneDrive/content"
 alias tmux="tmux -f ~/dotfiles/tmux.conf"
 alias excel="/mnt/c/Program\ Files/Microsoft\ Office/root/Office16/EXCEL.EXE"
+alias py="python"
+alias venv="virtualenv .venv"
+alias pyact='source .venv/bin/activate'
 
 ## Neovim aliases for sanity
 
@@ -27,8 +30,21 @@ alias bnvim="nvim"
 alias nv="nvim"
 alias nvi="nvim"
 
-# functions
+## functions
 
+update() {
+	sudo apt update
+	sudo apt -y upgrade
+	echo -n ".\n.\n.\n.\nUpdate NPM global packages (y/n)? "
+	read answer
+	if [ "$answer" != "${answer#[Yy]}" ] ;then 
+			npm -g update
+	else
+			echo 'go nuts..'
+	fi
+}
+
+# may no longer work
 updateGoLatest() {
 	cd /
 	GOVER="$(curl -s https://golang.org/dl/|grep -Eom1 '/dl.*gz')"
@@ -46,7 +62,7 @@ fzf_find_and_open() {
 	nvim ${file//*\/}
 }
 
-# keybindings
+## keybindings
 
 bindkey -s '^f' 'fzf_find_and_open\n'
 
