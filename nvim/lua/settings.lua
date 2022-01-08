@@ -13,6 +13,7 @@ vim.cmd([[
 opt.guicursor = "i:block"
 opt.cursorline = true
 opt.number = true
+-- opt.ruler = true
 opt.hidden = true
 opt.shortmess:append("c")
 

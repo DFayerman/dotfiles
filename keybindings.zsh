@@ -10,9 +10,11 @@ alias cdc="cd ~/code"
 alias cdo="cd /mnt/c/Users/david/OneDrive/content"
 alias tmux="tmux -f ~/dotfiles/tmux.conf"
 alias excel="/mnt/c/Program\ Files/Microsoft\ Office/root/Office16/EXCEL.EXE"
+# Python
 alias py="python"
 alias venv="virtualenv .venv"
 alias pyact='source .venv/bin/activate'
+alias activate='source .venv/bin/activate'
 
 ## Neovim aliases for sanity
 
