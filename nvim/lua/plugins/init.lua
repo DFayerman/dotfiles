@@ -49,6 +49,8 @@ return require("packer").startup(function()
 	-- json schemastore (open source project) autocompletion
 	use("b0o/schemastore.nvim")
 
+	-- 	use("rafamadriz/friendly-snippets")
+
 	-- autopair
 	use({
 		"windwp/nvim-autopairs",
