@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_ROOT=$HOME/.pyenv
 export GOPATH=$HOME/go
 export PATH=$HOME/bin:$HOME/.local/bin:$PYENV_ROOT/bin:$HOME/.cargo/bin:usr/local/bin:$HOME/.cargo/bin:/usr/local/go/bin:$GOPATH/bin:$PATH
 

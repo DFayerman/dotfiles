@@ -3,6 +3,7 @@
 alias mkdir="mkdir -pv";
 alias c="clear";
 alias wget="wget -c";
+alias whatisthis="cat /etc/os-release"
 # alias update="sudo apt update && sudo -S apt -y upgrade"
 alias l="ls -sh1FAur --group-directories-first --color=auto"
 alias ~="cd ~"
