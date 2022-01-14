@@ -16,6 +16,9 @@ alias py="python"
 alias venv="virtualenv .venv"
 alias pyact='source .venv/bin/activate'
 alias activate='source .venv/bin/activate'
+# Git
+alias ga="git add -A"
+alias gcm="git commit -m"
 
 ## Neovim aliases for sanity
 

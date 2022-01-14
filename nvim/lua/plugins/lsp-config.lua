@@ -22,10 +22,10 @@ end
 
 local preferred_formatting_clients = { "eslint_d", "tsserver" }
 local fallback_formatting_client = "null-ls"
-local formatting = function()
-	local bufnr = vim.api.nvim_get_current_buf()
+local formatting = function(bufnr)
+	bufnr = tonumber(bufnr) or vim.api.nvim_get_current_buf()
 	local selected_client
-	for _, client in ipairs(vim.lsp.get_active_clients()) do
+	for _, client in ipairs(vim.lsp.buf_get_clients(bufnr)) do
 		if vim.tbl_contains(preferred_formatting_clients, client.name) then
 			selected_client = client
 			break
@@ -38,12 +38,22 @@ local formatting = function()
 		return
 	end
 	local params = vim.lsp.util.make_formatting_params()
-	local result, err = selected_client.request_sync("textDocument/formatting", params, 5000, bufnr)
-	if result and result.result then
-		vim.lsp.util.apply_text_edits(result.result, bufnr)
-	elseif err then
-		vim.notify("global.lsp.formatting: " .. err, vim.log.levels.WARN)
-	end
+	selected_client.request("textDocument/formatting", params, function(err, res)
+		if err then
+			local err_msg = type(err) == "string" and err or err.message
+			vim.notify("global.lsp.formatting: " .. err_msg, vim.log.levels.WARN)
+			return
+		end
+		if not vim.api.nvim_buf_is_loaded(bufnr) or vim.api.nvim_buf_get_option(bufnr, "modified") then
+			return
+		end
+		if res then
+			vim.lsp.util.apply_text_edits(res, bufnr, selected_client.offset_encoding or "utf-16")
+			vim.api.nvim_buf_call(bufnr, function()
+				vim.cmd("silent noautocmd update")
+			end)
+		end
+	end, bufnr)
 end
 
 global.lsp = {
@@ -142,9 +152,12 @@ lspconfig.jsonls.setup({
 lspconfig.tsserver.setup({
 	root_dir = lspconfig.util.root_pattern("package.json"),
 	init_options = ts_utils.init_options,
+
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
+
 		ts_utils.setup({
+			import_all_scan_buffers = 100,
 			update_imports_on_move = true,
 			filter_out_diagnostics_by_code = { 80001 },
 		})
@@ -204,6 +217,5 @@ vim.notify = function(msg, ...)
 	if msg:match("%[lspconfig%]") then
 		return
 	end
-
 	notify(msg, ...)
 end
