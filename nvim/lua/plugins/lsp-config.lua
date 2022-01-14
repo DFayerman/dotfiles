@@ -12,15 +12,12 @@ local border_opts = {
 }
 
 vim.diagnostic.config({ virtual_text = false, float = border_opts })
-
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, border_opts)
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, border_opts)
 
 -- remap helper
 local bufmap = function(bufnr, mode, lhs, rhs, opts)
-	vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
-		silent = true,
-	})
+	vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or { silent = true })
 end
 
 local preferred_formatting_clients = { "eslint_d", "tsserver" }
@@ -65,6 +62,7 @@ local on_attach = function(client, bufnr)
 	bufmap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	bufmap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	bufmap(bufnr, "n", "<Leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+	bufmap(bufnr, "n", "<C-x>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	bufmap(bufnr, "i", "<C-x>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	bufmap(bufnr, "n", "<Leader>a", "<cmd>lua vim.diagnostic.open_float(nil,global.lsp.border_opts)<CR>", opts)
 	-- bufmap('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
