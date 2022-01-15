@@ -126,7 +126,7 @@ return require("packer").startup(function()
 		},
 	})
 
-	use("nvim-lua/plenary.nvim") -- loaded on its own because it may be used by other plugins
+	use("nvim-lua/plenary.nvim")
 
 	-- colorscheme
 	use("morhetz/gruvbox")
