@@ -20,7 +20,7 @@ local bufmap = function(bufnr, mode, lhs, rhs, opts)
 	vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or { silent = true })
 end
 
-local preferred_formatting_clients = { "eslint_d", "tsserver" }
+local preferred_formatting_clients = { "eslint_d", "tsserver", "gopls" }
 local fallback_formatting_client = "null-ls"
 local formatting = function(bufnr)
 	bufnr = tonumber(bufnr) or vim.api.nvim_get_current_buf()
@@ -79,8 +79,13 @@ local on_attach = function(client, bufnr)
 	-- bufmap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 	-- bufmap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 	-- bufmap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-	if client.resolved_capabilities.document_formatting then
-		vim.cmd("autocmd BufWritePre <buffer> lua global.lsp.formatting()")
+	if client.supports_method("textDocument/formatting") then
+		vim.cmd([[
+        augroup LspFormatting
+            autocmd! * <buffer>
+            autocmd BufWritePost <buffer> lua global.lsp.formatting(vim.fn.expand("<abuf>"))
+        augroup END
+        ]])
 	end
 
 	require("illuminate").on_attach(client)
