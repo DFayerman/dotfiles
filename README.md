@@ -22,7 +22,7 @@
 
 `PREFIX 1 - 5`: tmux jump to window 1 - 5
 
-## In [Neo]vim
+## In Neovimm
 
 #### NORMAL MODE
 
@@ -42,3 +42,5 @@
 
 [tpope/vim-surround](https://github.com/tpope/vim-surround)
 [tpope/vim-commentary](https://github.com/tpope/vim-commentary)
+[tpope/vim-fugitive](https://github.com/tpope/vim-fugitive)
+[tpope/vim-eunuch](https://github.com/tpope/vim-eunuch)
