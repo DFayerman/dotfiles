@@ -93,6 +93,14 @@ return require("packer").startup(function()
 		config = [[require('plugins.treesitter-config')]],
 	})
 
+	use({
+		"kyazdani42/nvim-tree.lua",
+		requires = {
+			"kyazdani42/nvim-web-devicons", -- optional, for file icon
+		},
+		config = [[require('plugins.tree-config')]],
+	})
+
 	-- use('nvim-treesitter/nvim-treesitter-textsubjects')
 
 	-- highlight current word and other instances

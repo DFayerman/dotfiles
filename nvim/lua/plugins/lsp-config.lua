@@ -20,7 +20,7 @@ local bufmap = function(bufnr, mode, lhs, rhs, opts)
 	vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or { silent = true })
 end
 
-local preferred_formatting_clients = { "eslint_d", "tsserver", "gopls" }
+local preferred_formatting_clients = { "eslint_d", "gopls" }
 local fallback_formatting_client = "null-ls"
 local formatting = function(bufnr)
 	bufnr = tonumber(bufnr) or vim.api.nvim_get_current_buf()
@@ -82,8 +82,8 @@ local on_attach = function(client, bufnr)
 	if client.supports_method("textDocument/formatting") then
 		vim.cmd([[
         augroup LspFormatting
-            autocmd! * <buffer>
-            autocmd BufWritePost <buffer> lua global.lsp.formatting(vim.fn.expand("<abuf>"))
+          autocmd! * <buffer>
+          autocmd BufWritePost <buffer> silent! lua global.lsp.formatting(vim.fn.expand("<abuf>")) 
         augroup END
         ]])
 	end

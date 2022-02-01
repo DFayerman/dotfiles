@@ -37,3 +37,5 @@ vim.api.nvim_set_keymap(
 )
 -- Neovim built-in terminal emulator mappings
 tmap("<Esc>", "<C-\\><C-n>")
+-- nvim-tree
+nmap("<Leader><TAB>", ":NvimTreeToggle<CR>")
