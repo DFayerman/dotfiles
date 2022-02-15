@@ -117,11 +117,14 @@ return require("packer").startup(function()
 	})
 
 	-- markdown preview
-	-- use {
-	-- 	'iamcco/markdown-preview.nvim',
-	-- 	run = 'cd app && yarn install',
-	-- 	cmd = 'MarkdownPreview'
-	-- }
+   use({
+        "iamcco/markdown-preview.nvim", -- preview markdown output in browser
+        opt = true,
+        ft = { "markdown" },
+        config = "vim.cmd[[doautocmd BufEnter]]",
+        run = "cd app && yarn install",
+        cmd = "MarkdownPreview",
+    })
 
 	-- fuzzy finder
 	use({

@@ -139,6 +139,9 @@ configs.tailwindcss = {
 lspconfig.jsonls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
+	flags = {
+		debounce_text_changes = 150,
+	},
 	settings = {
 		json = {
 			schemas = require("schemastore").json.schemas({
@@ -151,6 +154,26 @@ lspconfig.jsonls.setup({
 			}),
 		},
 	},
+})
+
+-- python server setup
+lspconfig.pyright.setup({
+	on_attach=on_attach,
+	capabilities=capabilities,
+	root_dir = lspconfig.util.root_pattern('.py'),
+	flags = {
+		debounce_text_changes = 150,
+	},
+	settings= {
+		python = {
+			analysis = {
+				autoSearchPaths = false,
+				diagnosticMode = 'openFilesOnly',
+				useLibraryCodesForTypes = false
+			}
+		}
+	}
+
 })
 
 -- typescript server setup
@@ -205,7 +228,6 @@ for _, lsp in ipairs({
 	"cssls",
 	"rust_analyzer",
 	"tailwindcss",
-	"pyright",
 }) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
