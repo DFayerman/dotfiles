@@ -88,7 +88,7 @@ local on_attach = function(client, bufnr)
         ]])
 	end
 
-	require("illuminate").on_attach(client)
+	-- require("illuminate").on_attach(client)
 end
 
 configs.tailwindcss = {
@@ -142,39 +142,39 @@ lspconfig.jsonls.setup({
 	flags = {
 		debounce_text_changes = 150,
 	},
-	settings = {
-		json = {
-			schemas = require("schemastore").json.schemas({
-				select = {
-					".eslintrc",
-					"package.json",
-					"tsconfig.json",
-					"tslint.json",
-				},
-			}),
-		},
-	},
+	-- settings = {
+	-- 	json = {
+	-- 		schemas = require("schemastore").json.schemas({
+	-- 			select = {
+	-- 				".eslintrc",
+	-- 				"package.json",
+	-- 				"tsconfig.json",
+	-- 				"tslint.json",
+	-- 			},
+	-- 		}),
+	-- 	},
+	-- },
 })
 
 -- python server setup
-lspconfig.pyright.setup({
-	on_attach=on_attach,
-	capabilities=capabilities,
-	root_dir = lspconfig.util.root_pattern('.py'),
-	flags = {
-		debounce_text_changes = 150,
-	},
-	settings= {
-		python = {
-			analysis = {
-				autoSearchPaths = false,
-				diagnosticMode = 'openFilesOnly',
-				useLibraryCodesForTypes = false
-			}
-		}
-	}
+-- lspconfig.pyright.setup({
+-- 	on_attach=on_attach,
+-- 	capabilities=capabilities,
+-- 	root_dir = lspconfig.util.root_pattern('.py'),
+-- 	flags = {
+-- 		debounce_text_changes = 150,
+-- 	},
+-- 	settings= {
+-- 		python = {
+-- 			analysis = {
+-- 				autoSearchPaths = false,
+-- 				diagnosticMode = 'workspace',
+-- 				useLibraryCodesForTypes = false
+-- 			}
+-- 		}
+-- 	}
 
-})
+-- })
 
 -- typescript server setup
 lspconfig.tsserver.setup({
@@ -228,6 +228,7 @@ for _, lsp in ipairs({
 	"cssls",
 	"rust_analyzer",
 	"tailwindcss",
+	"pyright"
 }) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,

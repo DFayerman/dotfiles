@@ -47,7 +47,7 @@ return require("packer").startup(function()
 	})
 
 	-- json schemastore (open source project) autocompletion
-	use("b0o/schemastore.nvim")
+	-- use("b0o/schemastore.nvim")
 
 	-- 	use("rafamadriz/friendly-snippets")
 
@@ -56,6 +56,7 @@ return require("packer").startup(function()
 		"windwp/nvim-autopairs",
 		-- after = 'nvim-cmp',
 		config = [[require('plugins.autopair-config')]],
+		wants = "nvim-cmp"
 	})
 
 	use({
@@ -104,7 +105,7 @@ return require("packer").startup(function()
 	-- use('nvim-treesitter/nvim-treesitter-textsubjects')
 
 	-- highlight current word and other instances
-	use("RRethy/vim-illuminate")
+	-- use("RRethy/vim-illuminate")
 
 	use({
 		"lukas-reineke/headlines.nvim",
@@ -118,7 +119,7 @@ return require("packer").startup(function()
 
 	-- markdown preview
    use({
-        "iamcco/markdown-preview.nvim", -- preview markdown output in browser
+        "iamcco/markdown-preview.nvim", 
         opt = true,
         ft = { "markdown" },
         config = "vim.cmd[[doautocmd BufEnter]]",
