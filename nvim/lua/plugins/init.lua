@@ -60,7 +60,7 @@ return require("packer").startup(function()
 	})
 
 	-- json schemastore (open source project) autocompletion
-	use("b0o/schemastore.nvim")
+	-- use("b0o/schemastore.nvim")
 
 	-- 	use("rafamadriz/friendly-snippets")
 
@@ -103,7 +103,7 @@ return require("packer").startup(function()
 	})
 
 	-- highlight current word and other instances
-	use("RRethy/vim-illuminate")
+	-- use("RRethy/vim-illuminate")
 
 	use({
 		"lukas-reineke/headlines.nvim",
@@ -115,14 +115,15 @@ return require("packer").startup(function()
 		config = [[require('plugins.indent-blankline-config')]],
 	})
 
-	-- 	use({
-	-- 		"iamcco/markdown-preview.nvim", -- preview markdown output in browser
-	-- 		opt = true,
-	-- 		ft = { "markdown" },
-	-- 		config = "vim.cmd[[doautocmd BufEnter]]",
-	-- 		run = "cd app && yarn install",
-	-- 		cmd = "MarkdownPreview",
-	-- 	})
+	-- markdown preview
+   use({
+        "iamcco/markdown-preview.nvim", 
+        opt = true,
+        ft = { "markdown" },
+        config = "vim.cmd[[doautocmd BufEnter]]",
+        run = "cd app && yarn install",
+        cmd = "MarkdownPreview",
+    })
 
 	-- fuzzy finder
 	use({
