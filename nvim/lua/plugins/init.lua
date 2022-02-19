@@ -46,23 +46,6 @@ return require("packer").startup(function()
 		config = [[require('plugins.luasnips-config') ]],
 	})
 
-	-- json schemastore (open source project) autocompletion
-	use("b0o/schemastore.nvim")
-
-	-- 	use("rafamadriz/friendly-snippets")
-
-	-- autopair
-	use({
-		"windwp/nvim-autopairs",
-		-- after = 'nvim-cmp',
-		config = [[require('plugins.autopair-config')]],
-	})
-
-	use({
-		"windwp/nvim-ts-autotag",
-		config = [[require('plugins.ts-autotag-config')]],
-	})
-
 	-- completion
 	use({
 		"hrsh7th/nvim-cmp",
@@ -74,6 +57,24 @@ return require("packer").startup(function()
 			"hrsh7th/cmp-nvim-lua",
 		},
 		config = [[require('plugins.cmp-config')]],
+	})
+
+	-- json schemastore (open source project) autocompletion
+	use("b0o/schemastore.nvim")
+
+	-- 	use("rafamadriz/friendly-snippets")
+
+	-- autopair
+	use({
+		"windwp/nvim-autopairs",
+		-- after = 'nvim-cmp',
+		config = [[require('plugins.autopair-config')]],
+		wants = "nvim-cmp",
+	})
+
+	use({
+		"windwp/nvim-ts-autotag",
+		config = [[require('plugins.ts-autotag-config')]],
 	})
 
 	-- use {
@@ -101,8 +102,6 @@ return require("packer").startup(function()
 		config = [[require('plugins.tree-config')]],
 	})
 
-	-- use('nvim-treesitter/nvim-treesitter-textsubjects')
-
 	-- highlight current word and other instances
 	use("RRethy/vim-illuminate")
 
@@ -116,12 +115,14 @@ return require("packer").startup(function()
 		config = [[require('plugins.indent-blankline-config')]],
 	})
 
-	-- markdown preview
-	-- use {
-	-- 	'iamcco/markdown-preview.nvim',
-	-- 	run = 'cd app && yarn install',
-	-- 	cmd = 'MarkdownPreview'
-	-- }
+	-- 	use({
+	-- 		"iamcco/markdown-preview.nvim", -- preview markdown output in browser
+	-- 		opt = true,
+	-- 		ft = { "markdown" },
+	-- 		config = "vim.cmd[[doautocmd BufEnter]]",
+	-- 		run = "cd app && yarn install",
+	-- 		cmd = "MarkdownPreview",
+	-- 	})
 
 	-- fuzzy finder
 	use({
