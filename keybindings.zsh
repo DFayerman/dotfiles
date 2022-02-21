@@ -9,7 +9,6 @@ alias l="ls -sh1FAur --group-directories-first --color=auto"
 alias excel="/mnt/c/Program\ Files/Microsoft\ Office/root/Office16/EXCEL.EXE"
 # navigation
 alias ..="cd .."
-alias ...="cd .. & cd .."
 alias ~="cd ~"
 alias cdc="cd ~/code"
 alias cdo="cd /mnt/c/Users/david/OneDrive/content"
@@ -23,6 +22,7 @@ alias ga="git add -A"
 alias gcm="git commit -m"
 # tmux
 alias tmux="tmux -f ~/dotfiles/tmux.conf"
+alias tm="tmux"
 
 ## Neovim aliases for sanity
 
@@ -41,6 +41,10 @@ alias nv="nvim"
 alias nvi="nvim"
 
 ## functions
+
+...() {
+	repeat 2 { cd .. }
+}
 
 update() {
 	sudo apt update
