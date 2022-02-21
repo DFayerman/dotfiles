@@ -11,10 +11,7 @@ return require("packer").startup(function()
 	use({ "wbthomason/packer.nvim", opt = true })
 
 	-- speed up Neovim runtime
-	use({
-		"nathom/filetype.nvim",
-		config = [[require('plugins.filetype-config')]],
-	})
+	use("lewis6991/impatient.nvim")
 
 	use({ "kyazdani42/nvim-web-devicons" })
 
@@ -62,8 +59,6 @@ return require("packer").startup(function()
 	-- json schemastore (open source project) autocompletion
 	-- use("b0o/schemastore.nvim")
 
-	-- 	use("rafamadriz/friendly-snippets")
-
 	-- autopair
 	use({
 		"windwp/nvim-autopairs",
@@ -76,10 +71,6 @@ return require("packer").startup(function()
 		"windwp/nvim-ts-autotag",
 		config = [[require('plugins.ts-autotag-config')]],
 	})
-
-	-- use {
-	-- 	'ap/vim-css-color',
-	-- }
 
 	-- use {
 	--  "norcalli/nvim-colorizer.lua",
@@ -116,14 +107,14 @@ return require("packer").startup(function()
 	})
 
 	-- markdown preview
-   use({
-        "iamcco/markdown-preview.nvim", 
-        opt = true,
-        ft = { "markdown" },
-        config = "vim.cmd[[doautocmd BufEnter]]",
-        run = "cd app && yarn install",
-        cmd = "MarkdownPreview",
-    })
+	use({
+		"iamcco/markdown-preview.nvim",
+		opt = true,
+		ft = { "markdown" },
+		config = "vim.cmd[[doautocmd BufEnter]]",
+		run = "cd app && yarn install",
+		cmd = "MarkdownPreview",
+	})
 
 	-- fuzzy finder
 	use({

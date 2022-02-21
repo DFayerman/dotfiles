@@ -12,12 +12,24 @@ local border_opts = {
 }
 
 vim.diagnostic.config({ virtual_text = false, float = border_opts })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, border_opts)
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, border_opts)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+	vim.lsp.handlers.signature_help,
+	border_opts
+)
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+	vim.lsp.handlers.hover,
+	border_opts
+)
 
 -- remap helper
 local bufmap = function(bufnr, mode, lhs, rhs, opts)
-	vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or { silent = true })
+	vim.api.nvim_buf_set_keymap(
+		bufnr,
+		mode,
+		lhs,
+		rhs,
+		opts or { silent = true }
+	)
 end
 
 local preferred_formatting_clients = { "eslint_d", "gopls" }
@@ -38,22 +50,37 @@ local formatting = function(bufnr)
 		return
 	end
 	local params = vim.lsp.util.make_formatting_params()
-	selected_client.request("textDocument/formatting", params, function(err, res)
-		if err then
-			local err_msg = type(err) == "string" and err or err.message
-			vim.notify("global.lsp.formatting: " .. err_msg, vim.log.levels.WARN)
-			return
-		end
-		if not vim.api.nvim_buf_is_loaded(bufnr) or vim.api.nvim_buf_get_option(bufnr, "modified") then
-			return
-		end
-		if res then
-			vim.lsp.util.apply_text_edits(res, bufnr, selected_client.offset_encoding or "utf-16")
-			vim.api.nvim_buf_call(bufnr, function()
-				vim.cmd("silent noautocmd update")
-			end)
-		end
-	end, bufnr)
+	selected_client.request(
+		"textDocument/formatting",
+		params,
+		function(err, res)
+			if err then
+				local err_msg = type(err) == "string" and err or err.message
+				vim.notify(
+					"global.lsp.formatting: " .. err_msg,
+					vim.log.levels.WARN
+				)
+				return
+			end
+			if
+				not vim.api.nvim_buf_is_loaded(bufnr)
+				or vim.api.nvim_buf_get_option(bufnr, "modified")
+			then
+				return
+			end
+			if res then
+				vim.lsp.util.apply_text_edits(
+					res,
+					bufnr,
+					selected_client.offset_encoding or "utf-16"
+				)
+				vim.api.nvim_buf_call(bufnr, function()
+					vim.cmd("silent noautocmd update")
+				end)
+			end
+		end,
+		bufnr
+	)
 end
 
 global.lsp = {
@@ -71,10 +98,34 @@ local on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true }
 	bufmap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	bufmap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-	bufmap(bufnr, "n", "<Leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-	bufmap(bufnr, "n", "<C-x>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	bufmap(bufnr, "i", "<C-x>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	bufmap(bufnr, "n", "<Leader>a", "<cmd>lua vim.diagnostic.open_float(nil,global.lsp.border_opts)<CR>", opts)
+	bufmap(
+		bufnr,
+		"n",
+		"<Leader>f",
+		"<cmd>lua vim.lsp.buf.formatting()<CR>",
+		opts
+	)
+	bufmap(
+		bufnr,
+		"n",
+		"<C-x>",
+		"<cmd>lua vim.lsp.buf.signature_help()<CR>",
+		opts
+	)
+	bufmap(
+		bufnr,
+		"i",
+		"<C-x>",
+		"<cmd>lua vim.lsp.buf.signature_help()<CR>",
+		opts
+	)
+	bufmap(
+		bufnr,
+		"n",
+		"<Leader>a",
+		"<cmd>lua vim.diagnostic.open_float(nil,global.lsp.border_opts)<CR>",
+		opts
+	)
 	-- bufmap('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 	-- bufmap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 	-- bufmap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
@@ -94,7 +145,13 @@ end
 configs.tailwindcss = {
 	default_config = {
 		cmd = { "tailwindcss-language-server", "--stdio" },
-		filetypes = { "html", "javascriptreact", "typescriptreact", "vue", "svelte" },
+		filetypes = {
+			"html",
+			"javascriptreact",
+			"typescriptreact",
+			"vue",
+			"svelte",
+		},
 		init_options = {},
 		on_new_config = function(new_config)
 			if not new_config.settings then
@@ -105,7 +162,8 @@ configs.tailwindcss = {
 			end
 			if not new_config.settings.editor.tabSize then
 				-- set tab size for hover
-				new_config.settings.editor.tabSize = vim.lsp.util.get_effective_tabstop()
+				new_config.settings.editor.tabSize =
+					vim.lsp.util.get_effective_tabstop()
 			end
 		end,
 		root_dir = lspconfig.util.root_pattern(
@@ -119,7 +177,12 @@ configs.tailwindcss = {
 		),
 		settings = {
 			tailwindCSS = {
-				classAttributes = { "class", "className", "classList", "ngClass" },
+				classAttributes = {
+					"class",
+					"className",
+					"classList",
+					"ngClass",
+				},
 				lint = {
 					cssConflict = "warning",
 					invalidApply = "error",

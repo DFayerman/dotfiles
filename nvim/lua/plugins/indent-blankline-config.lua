@@ -1,5 +1,5 @@
 require("indent_blankline").setup({
-  char = '⏐',
+  -- char = ' ',
   -- space_char = ' ',
 	space_char_blankline = ' ',
   filetype_exclude = { 'help', 'packer' },

@@ -58,7 +58,7 @@ update() {
 	fi
 }
 
-updateGoLatest() {
+update_go_latest() {
 	if [[ $(ping -qc 1 go.dev | echo $?) != 0 ]]
 	then
 		echo "Golang website not responding, ending upgrade attempt..."
@@ -66,7 +66,6 @@ updateGoLatest() {
 	fi
 	cd /
 	GOVER="$(curl -s https://go.dev/dl/|grep -Eom1 '/dl.*gz')"
-	echo $GOVER
 	echo "https://go.dev/${GOVER}"|{ read url; sudo wget $url; }
 	sudo rm -rf /usr/local/go 
 	sudo tar -C /usr/local -xzf go*.gz
@@ -79,6 +78,15 @@ fzf_find_and_open() {
 	file="$(fzf)"
 	cd $HOME/${file%/*}
 	nvim ${file//*\/}
+}
+
+print_all_the_colors() {
+    for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done
+}
+
+
+get_current_pyenv() {
+	pyenv version | grep -Eo "([[:digit:]]{1,2}\.){2}[[:digit:]]{1,2}"
 }
 
 ## keybindings

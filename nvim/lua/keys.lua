@@ -1,5 +1,10 @@
 function map(mode, shortcut, command)
-	vim.api.nvim_set_keymap(mode, shortcut, command, { noremap = true, silent = true })
+	vim.api.nvim_set_keymap(
+		mode,
+		shortcut,
+		command,
+		{ noremap = true, silent = true }
+	)
 end
 
 function nmap(shortcut, command)
@@ -25,7 +30,10 @@ nmap("<C-c>", "<Esc>")
 nmap("<TAB>", ":bnext<CR>")
 nmap("<S-TAB>", ":bprevious<CR>")
 -- open terminal + jump to current file's directory
-nmap("<M-`>", ':let $VIM_DIR=expand("%:p:h")<CR>:terminal<CR>acd $VIM_DIR<CR>clear<CR>')
+nmap(
+	"<M-`>",
+	':let $VIM_DIR=expand("%:p:h")<CR>:terminal<CR>acd $VIM_DIR<CR>clear<CR>'
+)
 -- fuzzy finder
 nmap("<C-p>", ":Telescope find_files<CR>")
 -- VSCode-style close file (overrites viewport prefix)
