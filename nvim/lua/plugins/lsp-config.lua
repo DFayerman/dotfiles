@@ -94,7 +94,7 @@ end
 configs.tailwindcss = {
 	default_config = {
 		cmd = { "tailwindcss-language-server", "--stdio" },
-		filetypes = { "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" },
+		filetypes = { "html", "javascriptreact", "typescriptreact", "vue", "svelte" },
 		init_options = {},
 		on_new_config = function(new_config)
 			if not new_config.settings then
@@ -228,7 +228,7 @@ for _, lsp in ipairs({
 	"cssls",
 	"rust_analyzer",
 	"tailwindcss",
-	"pyright"
+	"pyright",
 }) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
