@@ -173,7 +173,6 @@ lspconfig.jsonls.setup({
 -- 			}
 -- 		}
 -- 	}
-
 -- })
 
 -- typescript server setup

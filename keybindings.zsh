@@ -54,12 +54,16 @@ update() {
 	fi
 }
 
-# MAY NO LONGER WORK
 updateGoLatest() {
+	if [[ $(ping -qc 1 go.dev | echo $?) != 0 ]]
+	then
+		echo "Golang website not responding, ending upgrade attempt..."
+		return
+	fi
 	cd /
-	GOVER="$(curl -s https://golang.org/dl/|grep -Eom1 '/dl.*gz')"
+	GOVER="$(curl -s https://go.dev/dl/|grep -Eom1 '/dl.*gz')"
 	echo $GOVER
-	echo "https://golang.org${GOVER}"|{ read url; sudo wget $url; }
+	echo "https://go.dev/${GOVER}"|{ read url; sudo wget $url; }
 	sudo rm -rf /usr/local/go 
 	sudo tar -C /usr/local -xzf go*.gz
 	sudo rm go*.gz
