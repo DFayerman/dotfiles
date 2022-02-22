@@ -9,7 +9,6 @@ alias l="ls -sh1FAur --group-directories-first --color=auto"
 alias excel="/mnt/c/Program\ Files/Microsoft\ Office/root/Office16/EXCEL.EXE"
 # navigation
 alias ..="cd .."
-alias ...="cd .. & cd .."
 alias ~="cd ~"
 alias cdc="cd ~/code"
 alias cdo="cd /mnt/c/Users/david/OneDrive/content"
@@ -23,6 +22,7 @@ alias ga="git add -A"
 alias gcm="git commit -m"
 # tmux
 alias tmux="tmux -f ~/dotfiles/tmux.conf"
+alias tm="tmux"
 
 ## Neovim aliases for sanity
 
@@ -42,6 +42,10 @@ alias bnvim="$HOME/nvim.appimage"
 
 ## functions
 
+...() {
+	repeat 2 { cd .. }
+}
+
 update() {
 	sudo apt update
 	sudo apt -y upgrade
@@ -54,12 +58,15 @@ update() {
 	fi
 }
 
-# MAY NO LONGER WORK
-updateGoLatest() {
+update_go_latest() {
+	if [[ $(ping -qc 1 go.dev | echo $?) != 0 ]]
+	then
+		echo "Golang website not responding, ending upgrade attempt..."
+		return
+	fi
 	cd /
-	GOVER="$(curl -s https://golang.org/dl/|grep -Eom1 '/dl.*gz')"
-	echo $GOVER
-	echo "https://golang.org${GOVER}"|{ read url; sudo wget $url; }
+	GOVER="$(curl -s https://go.dev/dl/|grep -Eom1 '/dl.*gz')"
+	echo "https://go.dev/${GOVER}"|{ read url; sudo wget $url; }
 	sudo rm -rf /usr/local/go 
 	sudo tar -C /usr/local -xzf go*.gz
 	sudo rm go*.gz
@@ -71,6 +78,15 @@ fzf_find_and_open() {
 	file="$(fzf)"
 	cd $HOME/${file%/*}
 	nvim ${file//*\/}
+}
+
+print_all_the_colors() {
+    for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done
+}
+
+
+get_current_pyenv() {
+	pyenv version | grep -Eo "([[:digit:]]{1,2}\.){2}[[:digit:]]{1,2}"
 }
 
 ## keybindings

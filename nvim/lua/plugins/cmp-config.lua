@@ -3,17 +3,23 @@ local luasnip = require("luasnip")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 cmp.setup({
+	formatting = {
+		format = require("lspkind").cmp_format({
+			mode = "symbol_text",
+			maxwidth = 50,
+		}),
+	},
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
 		end,
 	},
 	completion = {
+		completeopt = "menuone,noinsert",
 		keyword_length = 2,
 	},
 	mapping = {
 		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -36,13 +42,12 @@ cmp.setup({
 			end
 		end,
 	},
-	sources = {
+	sources = cmp.config.sources({
+		{ name = "luasnip", priority = 9999 },
 		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
+	}, {
 		{ name = "path" },
 		{ name = "buffer" },
-		{ name = "nvim_lua" },
-	},
+		-- { name = "nvim_lua" },
+	}),
 })
-
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({ map_char = { tex = "" } }))

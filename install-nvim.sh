@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # install Neovim nightly or upgrade
 which nvim
 nvim -v
