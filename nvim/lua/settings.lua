@@ -1,12 +1,14 @@
 local opt = vim.opt
 
 opt.encoding = "utf-8"
+opt.shell = "/bin/zsh"
 opt.background = "dark"
 opt.termguicolors = true
 opt.cc = "80"
 
 vim.cmd([[
 	filetype plugin indent on
+	colorscheme gruvbox-material
 ]])
 
 opt.guicursor = "i:block"

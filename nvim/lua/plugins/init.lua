@@ -1,11 +1,3 @@
--- local packer_install_dir = vim.g.package_home .. "/opt/packer.nvim"
-
--- Auto-install packer in case it hasn't been installed.
--- if vim.fn.glob(packer_install_dir) == "" then
---   vim.api.nvim_echo({ { "Installing packer.nvim", "Type" } }, true, {})
---   vim.cmd(install_cmd)
--- end
-
 vim.cmd("packadd packer.nvim")
 return require("packer").startup(function()
 	use({ "wbthomason/packer.nvim", opt = true })
@@ -23,11 +15,19 @@ return require("packer").startup(function()
 		config = [[require('plugins.lualine-config')]],
 	})
 
-	-- fast comment, bracket text subjects and motions, helpful commands for file system + Git from Pope Daddy himself
+	-- fast comment, bracket text subjects and motions,
+	-- helpful commands for file system + Git from Pope Daddy himself
 	use("tpope/vim-surround")
 	use("tpope/vim-commentary")
 	use("tpope/vim-eunuch")
 	use("tpope/vim-fugitive")
+
+	-- treesitter
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+		config = [[require('plugins.treesitter-config')]],
+	})
 
 	-- LSP
 	use({
@@ -56,6 +56,13 @@ return require("packer").startup(function()
 		config = [[require('plugins.cmp-config')]],
 	})
 
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = [[require('plugins.gitsigns-config')]],
+	})
+
+	use("onsails/lspkind-nvim")
+
 	-- json schemastore (open source project) autocompletion
 	-- use("b0o/schemastore.nvim")
 
@@ -72,23 +79,10 @@ return require("packer").startup(function()
 		config = [[require('plugins.ts-autotag-config')]],
 	})
 
-	-- use {
-	--  "norcalli/nvim-colorizer.lua",
-	-- 	-- event = "BufReadPre",
-	-- 	-- config = [[require('plugins.colorizer-config')]],
-	-- }
-
-	-- treesitter
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-		config = [[require('plugins.treesitter-config')]],
-	})
-
 	use({
 		"kyazdani42/nvim-tree.lua",
 		requires = {
-			"kyazdani42/nvim-web-devicons", -- optional, for file icon
+			"kyazdani42/nvim-web-devicons",
 		},
 		config = [[require('plugins.tree-config')]],
 	})
@@ -130,5 +124,6 @@ return require("packer").startup(function()
 	use("nvim-lua/plenary.nvim")
 
 	-- colorscheme
-	use("morhetz/gruvbox")
+	-- use("morhetz/gruvbox")
+	use("sainnhe/gruvbox-material")
 end)

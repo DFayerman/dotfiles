@@ -5,19 +5,38 @@ local null_ls = require("null-ls")
 local ts_utils = require("nvim-lsp-ts-utils")
 local b = null_ls.builtins
 
+-- credit to https://github.com/jose-elias-alvarez for inspiration
+
 local border_opts = {
 	border = "rounded",
 	focusable = false,
 	scope = "line",
 }
 
-vim.diagnostic.config({ virtual_text = false, float = border_opts })
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-	vim.lsp.handlers.signature_help,
-	border_opts
-)
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+vim.diagnostic.config({
+	virtual_text = {
+		source = "if_many",
+		prefix = "●",
+	},
+	float = {
+		border = "rounded",
+		focusable = false,
+		source = "always",
+	},
+	signs = true,
+})
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 	vim.lsp.handlers.hover,
+	border_opts
+)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+	vim.lsp.handlers.signature_help,
 	border_opts
 )
 
@@ -126,10 +145,7 @@ local on_attach = function(client, bufnr)
 		"<cmd>lua vim.diagnostic.open_float(nil,global.lsp.border_opts)<CR>",
 		opts
 	)
-	-- bufmap('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-	-- bufmap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-	-- bufmap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-	-- bufmap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+
 	if client.supports_method("textDocument/formatting") then
 		vim.cmd([[
         augroup LspFormatting
@@ -138,8 +154,6 @@ local on_attach = function(client, bufnr)
         augroup END
         ]])
 	end
-
-	-- require("illuminate").on_attach(client)
 end
 
 configs.tailwindcss = {
@@ -242,12 +256,12 @@ lspconfig.jsonls.setup({
 lspconfig.tsserver.setup({
 	root_dir = lspconfig.util.root_pattern("package.json"),
 	init_options = ts_utils.init_options,
-
 	on_attach = function(client, bufnr)
 		on_attach(client, bufnr)
 
 		ts_utils.setup({
 			import_all_scan_buffers = 100,
+			auto_inlay_hints = false,
 			update_imports_on_move = true,
 			filter_out_diagnostics_by_code = { 80001 },
 		})
@@ -264,14 +278,7 @@ lspconfig.tsserver.setup({
 
 -- null-ls setup
 local sources = {
-	b.formatting.prettier.with({
-		disabled_filetypes = {
-			"typescript",
-			"typescriptreact",
-			"javascript",
-			"javascriptreact",
-		},
-	}),
+	b.formatting.prettier,
 	b.formatting.goimports,
 	b.formatting.sqlformat.with({
 		extra_args = { "-a" },
