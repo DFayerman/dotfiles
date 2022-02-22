@@ -27,18 +27,18 @@ alias tmux="tmux -f ~/dotfiles/tmux.conf"
 ## Neovim aliases for sanity
 
 ## for use with appimage version of Neovim
-# alias nvim="$HOME/nvim.appimage"
-# alias nv="$HOME/nvim.appimage"
-# alias vi="$HOME/nvim.appimage"
-# alias vnvim="$HOME/nvim.appimage"
-# alias nivm="$HOME/nvim.appimage"
-# alias bnvim="$HOME/nvim.appimage"
+alias nvim="$HOME/nvim.appimage"
+alias nv="$HOME/nvim.appimage"
+alias vi="$HOME/nvim.appimage"
+alias vnvim="$HOME/nvim.appimage"
+alias nivm="$HOME/nvim.appimage"
+alias bnvim="$HOME/nvim.appimage"
 
-alias vnvim="nvim"
-alias vim="nvim"
-alias bnvim="nvim"
-alias nv="nvim"
-alias nvi="nvim"
+#alias vnvim="nvim"
+#alias vim="nvim"
+#alias bnvim="nvim"
+#alias nv="nvim"
+#alias nvi="nvim"
 
 ## functions
 
