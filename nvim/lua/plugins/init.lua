@@ -64,7 +64,7 @@ return require("packer").startup(function()
 	use("onsails/lspkind-nvim")
 
 	-- json schemastore (open source project) autocompletion
-	-- use("b0o/schemastore.nvim")
+	use("b0o/schemastore.nvim")
 
 	-- autopair
 	use({
@@ -119,11 +119,11 @@ return require("packer").startup(function()
 				run = "make",
 			},
 		},
+		config = [[require('plugins.telescope-config')]],
 	})
 
 	use("nvim-lua/plenary.nvim")
 
 	-- colorscheme
-	-- use("morhetz/gruvbox")
 	use("sainnhe/gruvbox-material")
 end)

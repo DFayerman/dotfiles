@@ -51,7 +51,7 @@ local bufmap = function(bufnr, mode, lhs, rhs, opts)
 	)
 end
 
-local preferred_formatting_clients = { "eslint_d", "gopls" }
+local preferred_formatting_clients = { "eslint_d", "eslint" }
 local fallback_formatting_client = "null-ls"
 local formatting = function(bufnr)
 	bufnr = tonumber(bufnr) or vim.api.nvim_get_current_buf()
