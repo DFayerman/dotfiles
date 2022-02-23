@@ -102,6 +102,7 @@ local formatting = function(bufnr)
 	)
 end
 
+-- set global options, not necessarily needed
 global.lsp = {
 	border_opts = border_opts,
 	formatting = formatting,
@@ -116,6 +117,8 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 local on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true }
 	bufmap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+	bufmap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+	bufmap(bufnr, "n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
 	bufmap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	bufmap(
 		bufnr,
@@ -156,6 +159,7 @@ local on_attach = function(client, bufnr)
 	end
 end
 
+-- why did I add this again?
 configs.tailwindcss = {
 	default_config = {
 		cmd = { "tailwindcss-language-server", "--stdio" },
@@ -175,7 +179,6 @@ configs.tailwindcss = {
 				new_config.settings.editor = {}
 			end
 			if not new_config.settings.editor.tabSize then
-				-- set tab size for hover
 				new_config.settings.editor.tabSize =
 					vim.lsp.util.get_effective_tabstop()
 			end
@@ -219,20 +222,30 @@ lspconfig.jsonls.setup({
 	flags = {
 		debounce_text_changes = 150,
 	},
-	-- settings = {
-	-- 	json = {
-	-- 		schemas = require("schemastore").json.schemas({
-	-- 			select = {
-	-- 				".eslintrc",
-	-- 				"package.json",
-	-- 				"tsconfig.json",
-	-- 				"tslint.json",
-	-- 			},
-	-- 		}),
-	-- 	},
-	-- },
+	settings = {
+		json = {
+			schemas = require("schemastore").json.schemas({
+				select = {
+					".eslintrc",
+					"package.json",
+					"tsconfig.json",
+					"tslint.json",
+					"jsconfig.json",
+					"Serverless Framework Configuration",
+					-- "serverless.template",
+					-- "*.sam.json",
+					-- "*.sam.yml",
+					-- "*.sam.yaml",
+					-- "sam.json",
+					-- "sam.yml",
+					-- "sam.yaml",
+				},
+			}),
+		},
+	},
 })
 
+-- use this when default ain't doing it's thing
 -- python server setup
 -- lspconfig.pyright.setup({
 -- 	on_attach=on_attach,
@@ -280,10 +293,12 @@ lspconfig.tsserver.setup({
 local sources = {
 	b.formatting.prettier,
 	b.formatting.goimports,
-	b.formatting.sqlformat.with({
-		extra_args = { "-a" },
-	}),
 	b.formatting.stylua,
+	-- b.hover.dictionary,
+	b.completion.spell.with({
+		filetypes = { "markdown" },
+	}),
+	b.diagnostics.write_good,
 }
 
 null_ls.setup({
