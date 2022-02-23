@@ -68,3 +68,6 @@ vim.g.loaded_rrhelper = 1
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrwSettings = 1
+
+-- enforce 80 col width in markdown files
+vim.cmd([[  au BufRead,BufNewFile *.md setlocal textwidth=80  ]])

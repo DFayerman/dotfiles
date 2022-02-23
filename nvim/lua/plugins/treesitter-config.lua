@@ -1,21 +1,25 @@
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
+		"css",
 		"go",
 		"html",
-		"json",
-		"tsx",
-		"typescript",
+		"http",
 		"javascript",
+		"json",
 		"lua",
-		"css",
-		"rust",
+		"markdown",
 		"python",
 		"regex",
+		"rust",
+		"tsx",
+		"typescript",
+		"vim",
 	},
 	highlight = {
 		enable = true,
 		disable = { "html", "css" },
 	},
 	autopairs = { enable = true },
-	autotag = { enable = true },
+	-- don't need to enable below with nvim-ts-autotag setup
+	-- autotag = { enable = true },
 })

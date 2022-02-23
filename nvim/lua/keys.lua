@@ -41,7 +41,7 @@ nmap("<C-p>", ":Telescope find_files<CR>")
 vim.api.nvim_set_keymap(
 	"n",
 	"<C-w>",
-	[[ len(getbufinfo({"buflisted":1})) == 1 ? ":wq<CR>" : &buftype ==# "terminal" || &buftype ==# "help" ? ":bd!<CR>" : ":w<CR>:bd!<CR>" ]],
+	[[ len(getbufinfo({"buflisted":1})) == 1 ? ":wq<CR>" : &buftype ==# "terminal" || &buftype ==# "help" || &buftype ==# "nofile" ? ":bd!<CR>" : ":w<CR>:bd!<CR>" ]],
 	{ noremap = true, silent = true, expr = true }
 )
 -- Neovim built-in terminal emulator mappings
