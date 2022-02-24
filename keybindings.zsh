@@ -58,6 +58,18 @@ update() {
 	fi
 }
 
+update_nvim_nightly() {
+	sudo rm ~/nvim.appimage
+	if [[ $(ping -qc 1 github.com) != 0 ]]
+	then
+		wget -O $HOME/nvim.appimage https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage	
+		chmod u+x $HOME/nvim.appimage
+		echo "neovim nightly updated"
+	else
+		echo "github.com could not be reached or download link no longer valid"
+	fi
+}
+
 update_go_latest() {
 	if [[ $(ping -qc 1 go.dev | echo $?) != 0 ]]
 	then
