@@ -47,6 +47,8 @@ fi
 export NVM_DIR="$HOME/.config/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
+export NVM_COLORS='yMeWg'
+
 source $HOME/.config/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f $HOME/.config/.p10k.zsh ]] || source $HOME/.config/.p10k.zsh
 

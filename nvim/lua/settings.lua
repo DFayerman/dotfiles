@@ -16,6 +16,7 @@ opt.cursorline = true
 opt.number = true
 opt.hidden = true
 opt.shortmess:append("c")
+opt.showmode = false
 
 opt.incsearch = true
 opt.showmatch = true
