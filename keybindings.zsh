@@ -7,6 +7,7 @@ alias wget="wget -c";
 alias whatisthis="cat /etc/os-release"
 alias l="ls -sh1FAur --group-directories-first --color=auto"
 alias excel="/mnt/c/Program\ Files/Microsoft\ Office/root/Office16/EXCEL.EXE"
+alias whatsmyip="curl -s ip4only.me/api/ | grep -Eo '([0-9]{2,3}\.){3}[0-9]{1,3}'"
 # navigation
 alias ..="cd .."
 alias ~="cd ~"

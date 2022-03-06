@@ -38,13 +38,18 @@ nmap(
 nmap("<C-p>", ":Telescope find_files<CR>")
 -- VSCode-style close file (overwrites viewport prefix)
 -- TODO: close non-tab buffers on single tab open
-vim.api.nvim_set_keymap(
-	"n",
-	"<C-w>",
-	[[ len(getbufinfo({"buflisted":1})) == 1 ? ":wq<CR>" : &buftype ==# "terminal" || &buftype ==# "help" || &buftype ==# "nofile" ? ":bd!<CR>" : ":w<CR>:bd!<CR>" ]],
-	{ noremap = true, silent = true, expr = true }
-)
+-- vim.api.nvim_set_keymap(
+-- 	"n",
+-- 	"<C-w>",
+-- 	[[ len(getbufinfo({"buflisted":1})) == 1 ? ":wq<CR>" : &buftype ==# "terminal" || &buftype ==# "help" || &buftype ==# "nofile" ? ":bd!<CR>" : ":w<CR>:bd!<CR>" ]],
+-- 	{ noremap = true, silent = true, expr = true }
+-- )
 -- Neovim built-in terminal emulator mappings
 tmap("<Esc>", "<C-\\><C-n>")
 -- toggle Nvim-Tree
 nmap("<Leader><TAB>", ":NvimTreeToggle<CR>")
+-- move between splits
+nmap("<C-l>", "<C-w>l")
+imap("<C-l>", "<Esc><C-w>l")
+nmap("<C-h>", "<C-w>h")
+imap("<C-h>", "<Esc><C-w>h")

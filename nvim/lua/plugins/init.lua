@@ -40,7 +40,7 @@ return require("packer").startup(function()
 	-- snippets
 	use({
 		"L3MON4D3/LuaSnip",
-		config = [[require('plugins.luasnips-config') ]],
+		config = [[require('plugins.luasnips-config')]],
 	})
 
 	-- completion
@@ -123,6 +123,12 @@ return require("packer").startup(function()
 	})
 
 	use("nvim-lua/plenary.nvim")
+
+	-- smooth scroll
+	use({
+		"karb94/neoscroll.nvim",
+		config = [[require('plugins.neoscroll-config')]],
+	})
 
 	-- colorscheme
 	use("sainnhe/gruvbox-material")
