@@ -22,7 +22,7 @@ end
 vim.diagnostic.config({
 	virtual_text = {
 		source = "if_many",
-		prefix = "●",
+		prefix = "Σ",
 	},
 	float = {
 		border = "rounded",
@@ -53,7 +53,7 @@ end
 
 local preferred_formatting_clients = { "eslint_d", "eslint" }
 local fallback_formatting_client = "null-ls"
-local formatting = function(bufnr)
+_G.formatting = function(bufnr)
 	bufnr = tonumber(bufnr) or vim.api.nvim_get_current_buf()
 	local selected_client
 	for _, client in ipairs(vim.lsp.buf_get_clients(bufnr)) do
@@ -101,12 +101,6 @@ local formatting = function(bufnr)
 		bufnr
 	)
 end
-
--- set global options, not necessarily needed
-global.lsp = {
-	border_opts = border_opts,
-	formatting = formatting,
-}
 
 -- capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
