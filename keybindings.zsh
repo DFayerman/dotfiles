@@ -21,6 +21,7 @@ alias activate='source .venv/bin/activate'
 # Git
 alias ga="git add -A"
 alias gcm="git commit -m"
+alias gs='git status'
 # tmux
 alias tmux="tmux -f ~/dotfiles/tmux.conf"
 alias tm="tmux"
