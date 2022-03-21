@@ -29,7 +29,6 @@ if [ -d $HOME/.pyenv ]; then
 	export PATH=$PYENV_ROOT/bin:$PATH
 fi
 
-
 if [ -d $HOME/.cargo ]; then
 	export PATH=$HOME/.cargo/bin:$PATH
 fi
@@ -47,7 +46,7 @@ fi
 export NVM_DIR="$HOME/.config/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-export NVM_COLORS='yMeWg'
+# export NVM_COLORS='yMeWg'
 
 source $HOME/.config/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f $HOME/.config/.p10k.zsh ]] || source $HOME/.config/.p10k.zsh
