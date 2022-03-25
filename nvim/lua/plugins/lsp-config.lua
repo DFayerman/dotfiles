@@ -139,7 +139,7 @@ local on_attach = function(client, bufnr)
 		bufnr,
 		"n",
 		"<Leader>a",
-		"<cmd>lua vim.diagnostic.open_float(nil,global.lsp.border_opts)<CR>",
+		"<cmd>lua vim.diagnostic.open_float(nil)<CR>",
 		opts
 	)
 

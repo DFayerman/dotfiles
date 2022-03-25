@@ -1,7 +1,7 @@
 window:
   title: LIQUID
   dimensions:
-    columns: 120
+    columns: 100
     lines: 60
   padding:
     x: 10
@@ -25,6 +25,11 @@ font:
     family: UbuntuMono Nerd Font
     style: Bold Italic
   size: 11
+
+shell:
+  program: /bin/zsh
+  args:
+    - --login
 
 key_bindings:
   - { key: W,              mods: Control|Shift,                    action: Quit     }
