@@ -11,11 +11,10 @@ vim.cmd([[
 	colorscheme gruvbox-material
 ]])
 
-opt.guicursor = "i:block"
 opt.cursorline = true
 opt.number = true
 opt.hidden = true
-opt.shortmess:append("c")
+opt.shortmess:append("cA")
 opt.showmode = false
 opt.laststatus = 3
 

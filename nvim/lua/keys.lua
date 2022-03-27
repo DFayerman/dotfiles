@@ -10,25 +10,38 @@ end
 function nmap(shortcut, command)
 	map("n", shortcut, command)
 end
-
 function imap(shortcut, command)
 	map("i", shortcut, command)
 end
-
 function vmap(shortcut, command)
 	map("v", shortcut, command)
 end
-
 function tmap(shortcut, command)
 	map("t", shortcut, command)
+end
+function omap(shortcut, command)
+	map("o", shortcut, command)
+end
+function xmap(shortcut, command)
+	map("x", shortcut, command)
 end
 
 -- basic
 nmap("<C-s>", ":wa<CR>")
 nmap("<C-c>", "<Esc>")
+nmap("<Esc>", ":noh<CR>")
+nmap("H", "^")
+omap("H", "^")
+xmap("H", "^")
+nmap("L", "$")
+omap("L", "$")
+xmap("L", "$")
+nmap("<F1>", "<NOP>")
+nmap("<F2>", "<NOP>")
 -- tab through buffers
 nmap("<TAB>", ":bnext<CR>")
 nmap("<S-TAB>", ":bprevious<CR>")
+nmap("<BS>", "<C-^>")
 -- open terminal + jump to current file's directory
 nmap(
 	"<M-`>",

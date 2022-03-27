@@ -39,7 +39,18 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 	vim.lsp.handlers.signature_help,
 	border_opts
 )
+vim.lsp.handlers["textDocument/definition"] = function(_, result)
+  if not result or vim.tbl_isempty(result) then
+    print "[LSP] Could not find definition"
+    return
+  end
 
+  if vim.tbl_islist(result) then
+    vim.lsp.util.jump_to_location(result[1], "utf-8")
+  else
+    vim.lsp.util.jump_to_location(result, "utf-8")
+  end
+end
 -- remap helper
 local bufmap = function(bufnr, mode, lhs, rhs, opts)
 	vim.api.nvim_buf_set_keymap(
@@ -142,7 +153,6 @@ local on_attach = function(client, bufnr)
 		"<cmd>lua vim.diagnostic.open_float(nil)<CR>",
 		opts
 	)
-
 	if client.supports_method("textDocument/formatting") then
 		vim.cmd([[
         augroup LspFormatting
@@ -151,6 +161,7 @@ local on_attach = function(client, bufnr)
         augroup END
         ]])
 	end
+	require('illuminate').on_attach(client)
 end
 
 -- why did I add this again?
@@ -225,39 +236,13 @@ lspconfig.jsonls.setup({
 					"tsconfig.json",
 					"tslint.json",
 					"jsconfig.json",
-					"Serverless Framework Configuration",
-					-- "serverless.template",
 					-- "*.sam.json",
-					-- "*.sam.yml",
-					-- "*.sam.yaml",
 					-- "sam.json",
-					-- "sam.yml",
-					-- "sam.yaml",
 				},
 			}),
 		},
 	},
 })
-
--- use this when default ain't doing it's thing
--- python server setup
--- lspconfig.pyright.setup({
--- 	on_attach=on_attach,
--- 	capabilities=capabilities,
--- 	root_dir = lspconfig.util.root_pattern('.py'),
--- 	flags = {
--- 		debounce_text_changes = 150,
--- 	},
--- 	settings= {
--- 		python = {
--- 			analysis = {
--- 				autoSearchPaths = false,
--- 				diagnosticMode = 'workspace',
--- 				useLibraryCodesForTypes = false
--- 			}
--- 		}
--- 	}
--- })
 
 -- typescript server setup
 lspconfig.tsserver.setup({

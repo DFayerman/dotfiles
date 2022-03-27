@@ -1,4 +1,6 @@
+pip
+virtualenv
+
 pynvim
 neovim-remote
 
-pip
