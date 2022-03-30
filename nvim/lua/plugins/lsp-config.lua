@@ -273,10 +273,7 @@ local sources = {
 	b.formatting.prettier,
 	b.formatting.goimports,
 	b.formatting.stylua,
-	-- b.hover.dictionary,
-	b.completion.spell.with({
-		filetypes = { "markdown" },
-	}),
+	b.hover.dictionary,
 	b.diagnostics.write_good,
 }
 

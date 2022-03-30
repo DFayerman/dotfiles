@@ -34,6 +34,12 @@ shell:
 key_bindings:
   - { key: W,              mods: Control|Shift,                    action: Quit     }
 
+# mouse:
+#   url:
+#     launcher:
+#       program: open
+#     modifiers: Control
+
 # # Colors (Nord)
 # colors:
 #    # Default colors
