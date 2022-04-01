@@ -223,6 +223,7 @@ configs.tailwindcss = {
 -- json server setup
 lspconfig.jsonls.setup({
 	on_attach = on_attach,
+	filetypes = {"json", "jsonc", "yml"},
 	capabilities = capabilities,
 	flags = {
 		debounce_text_changes = 150,
@@ -243,6 +244,24 @@ lspconfig.jsonls.setup({
 		},
 	},
 })
+
+-- -- yaml server setup
+-- lspconfig.yamlls.setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	flags = {
+-- 		debounce_text_changes = 150,
+-- 	},
+-- 	settings = {
+-- 		yaml = {
+-- 			schemas = require("schemastore").yml.schemas({
+-- 				select = {
+-- 					"serverless.yml"
+-- 				},
+-- 			}),
+-- 		},
+-- 	}
+-- })
 
 -- typescript server setup
 lspconfig.tsserver.setup({
