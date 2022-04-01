@@ -24,7 +24,7 @@ alias gcm="git commit -m"
 alias gs='git status'
 # tmux
 alias tmux="tmux -f ~/dotfiles/tmux.conf"
-alias tm="tmux"
+alias tm="tmux a || tmux"
 
 ## Neovim aliases for sanity
 
@@ -100,7 +100,6 @@ fzf_find_and_open() {
 print_all_the_colors() {
     for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done
 }
-
 
 get_current_pyenv() {
 	pyenv version | grep -Eo "([[:digit:]]{1,2}\.){2}[[:digit:]]{1,2}"
