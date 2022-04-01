@@ -237,6 +237,7 @@ lspconfig.jsonls.setup({
 					"tsconfig.json",
 					"tslint.json",
 					"jsconfig.json",
+					"Serverless Framework Configuration",
 					-- "*.sam.json",
 					-- "sam.json",
 				},
