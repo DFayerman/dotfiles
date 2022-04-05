@@ -236,8 +236,6 @@ lspconfig.jsonls.setup({
 					"tsconfig.json",
 					"tslint.json",
 					"jsconfig.json",
-					-- "*.sam.json",
-					-- "sam.json",
 				},
 			}),
 		},

@@ -76,7 +76,6 @@ return require("packer").startup(function()
 	-- autopair
 	use({
 		"windwp/nvim-autopairs",
-		-- after = 'nvim-cmp',
 		config = [[require('plugins.autopair-config')]],
 		wants = "nvim-cmp",
 	})

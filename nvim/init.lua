@@ -4,9 +4,6 @@ vim.g.mapleader = " "
 -- load impatient plugin first
 pcall(require, "impatient")
 
--- global config object
-global = {}
-
 -- ROOT CONFIG INIT
 require("plugins")
 require("settings")

@@ -18,6 +18,7 @@ opt.shortmess:append("cA")
 opt.showmode = false
 opt.laststatus = 3
 
+opt.completeopt = "menu,menuone"
 opt.incsearch = true
 opt.showmatch = true
 opt.ignorecase = true
@@ -41,34 +42,29 @@ opt.backup = false
 opt.writebackup = false
 opt.swapfile = false
 
-opt.completeopt = "menu,menuone"
-
--- dynamic python3 host provider
-local fileHandle = assert(io.popen("pyenv which python", "r"))
-local commandOutput = string.gsub(assert(fileHandle:read("*a")), "\n", "")
-fileHandle:close()
-vim.g.python3_host_prog = commandOutput
-
 -- disable built-in plugins
 vim.g.loaded_gzip = 1
 vim.g.loaded_zip = 1
 vim.g.loaded_zipPlugin = 1
 vim.g.loaded_tar = 1
 vim.g.loaded_tarPlugin = 1
-
 vim.g.loaded_getscript = 1
 vim.g.loaded_getscriptPlugin = 1
 vim.g.loaded_vimball = 1
 vim.g.loaded_vimballPlugin = 1
 vim.g.loaded_2html_plugin = 1
-
 vim.g.loaded_matchit = 1
 vim.g.loaded_logiPat = 1
 vim.g.loaded_rrhelper = 1
-
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrwSettings = 1
+
+-- dynamic python3 host provider
+local fileHandle = assert(io.popen("pyenv which python", "r"))
+local commandOutput = string.gsub(assert(fileHandle:read("*a")), "\n", "")
+fileHandle:close()
+vim.g.python3_host_prog = commandOutput
 
 -- enforce 80 col width in markdown files
 vim.cmd([[  au BufRead,BufNewFile *.md setlocal textwidth=80  ]])

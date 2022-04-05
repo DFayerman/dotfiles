@@ -25,19 +25,21 @@ alias gs='git status'
 # tmux
 alias tmux="tmux -f ~/dotfiles/tmux.conf"
 alias tm="tmux a || tmux"
+alias td='tmux detach'
+alias tmls='tmux list-sessions'
 
 ## Neovim aliases for sanity
-
-## for use with appimage version of Neovim
-
 if [[ -f '/usr/local/bin/nvim' ]]; then
 	alias vnvim="nvim"
+	alias n="nvim"
 	alias vim="nvim"
 	alias bnvim="nvim"
 	alias nv="nvim"
 	alias nvi="nvim"
+	alias vi="nvim"
 else
 	alias nvim="$HOME/nvim.appimage"
+	alias n="$HOME/nvim.appimage"
 	alias nv="$HOME/nvim.appimage"
 	alias vi="$HOME/nvim.appimage"
 	alias vnvim="$HOME/nvim.appimage"
@@ -54,6 +56,7 @@ fi
 update() {
 	sudo apt update
 	sudo apt -y upgrade
+	sudo apt autoremove --purge
 	echo -n ".\n.\n.\n.\nUpdate NPM global packages (y/n)?"
 	read answer
 	if [ "$answer" != "${answer#[Yy]}" ] ;then 
