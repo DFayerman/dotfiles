@@ -124,6 +124,7 @@ local on_attach = function(client, bufnr)
 	bufmap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 	bufmap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	bufmap(bufnr, "n", "gT", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+	bufmap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 	bufmap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 	bufmap(
 		bufnr,
@@ -289,6 +290,7 @@ local sources = {
 	b.formatting.stylua,
 	b.hover.dictionary,
 	b.diagnostics.write_good,
+	b.diagnostics.flake8,
 }
 
 null_ls.setup({

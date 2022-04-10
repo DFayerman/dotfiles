@@ -1,15 +1,16 @@
 window:
   title: LIQUID
+  dynamic_title: false
   dimensions:
-    columns: 100
-    lines: 60
+    columns: 170
+    lines: 70
   padding:
     x: 10
     y: 10
   position:
-    x: 600
-    y: 700
-  decorations: none
+    x: 2500
+    y: 500
+  # decorations: none
 
 font:
   normal:
@@ -24,7 +25,7 @@ font:
   bold_italic:
     family: UbuntuMono Nerd Font
     style: Bold Italic
-  size: 11
+  size: 10
 
 shell:
   program: /bin/zsh
@@ -33,6 +34,7 @@ shell:
 
 key_bindings:
   - { key: W,              mods: Control|Shift,                    action: Quit     }
+  # - { key: F11,            mods: Control|Shift,                    action: ToggleFullscreen     }
 
 # mouse:
 #   url:
