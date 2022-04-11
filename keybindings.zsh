@@ -24,7 +24,7 @@ alias gcm="git commit -m"
 alias gs='git status'
 # tmux
 alias tmux="tmux -f ~/dotfiles/tmux.conf"
-alias tm="tmux a || tmux"
+alias tm="tmux a || tmux -s $1"
 alias td='tmux detach'
 alias tmls='tmux list-sessions'
 

@@ -4,3 +4,6 @@ virtualenv
 pynvim
 neovim-remote
 
+flake8
+pip-autoremove
+

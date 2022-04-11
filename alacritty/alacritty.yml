@@ -8,8 +8,8 @@ window:
     x: 10
     y: 10
   position:
-    x: 2500
-    y: 500
+    x: 1100
+    y: 400
   # decorations: none
 
 font:
