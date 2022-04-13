@@ -50,7 +50,6 @@ nmap(
 -- fuzzy finder
 nmap("<C-p>", ":Telescope find_files<CR>")
 -- VSCode-style close file (overwrites viewport prefix)
--- TODO: close non-tab buffers on single tab open
 vim.api.nvim_set_keymap(
 	"n",
 	"<M-w>",

@@ -36,7 +36,7 @@ fi
 export XDG_CONFIG_HOME=$HOME/dotfiles
 export EDITOR='nvim'
 export COLORTERM=truecolor
-export LS_COLORS=$LS_COLORS:'di=0;35:ow=0;35'
+export LS_COLORS=$LS_COLORS:'di=1;35:ow=0;35:ex=1;94:ln=1;33:'
 
 if [[ $s(command -v fd) ]]; then
 	export FZF_DEFAULT_COMMAND='fd --follow -t f -H -E go/ -E node_modules/ -E .git -E .config'
