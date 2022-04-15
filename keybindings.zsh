@@ -93,6 +93,11 @@ update_go_latest() {
 	echo "updated to $(go version)"
 }
 
+fix_chrome_client() {
+	sudo sed -i 's/Exec=\/usr\/bin\/google-chrome-stable/Exec=\/usr\/bin\/google-chrome-stable\ --force-device-scale-factor=1.5'
+	echo "relog for changes to take effect"
+}
+
 # for fuzzy finder keybind
 fzf_find_and_open() {
 	file="$(fzf)"
@@ -101,7 +106,7 @@ fzf_find_and_open() {
 }
 
 print_all_the_colors() {
-    for code in {000..255}; do print -P -- "$code: %F{$code}Test%f"; done
+    for code in {000..255}; do print -P -- "$code: %F{$code}Fart Butt%f"; done
 }
 
 get_current_pyenv() {
