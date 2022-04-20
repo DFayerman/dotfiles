@@ -41,7 +41,7 @@ nmap("<F2>", "<NOP>")
 -- tab through buffers
 nmap("<TAB>", ":bnext<CR>")
 nmap("<S-TAB>", ":bprevious<CR>")
-nmap("<BS>", "<C-^>")
+nmap("<BS>", ":bprevious<CR>")
 -- open terminal + jump to current file's directory
 nmap(
 	"<M-`>",

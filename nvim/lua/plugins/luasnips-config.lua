@@ -23,5 +23,5 @@ ls.snippets = {
 		}),
 	},
 }
-require("luasnip/loaders/from_vscode").load({include = {"html", "python"}})
+require("luasnip/loaders/from_vscode").load({include = {"html", "python", "go"}})
 

@@ -125,6 +125,13 @@ return require("packer").startup(function()
 		},
 		config = [[require('plugins.telescope-config')]],
 	})
+
+	-- debugger
+	use({ 
+		"mfussenegger/nvim-dap",
+		config = [[require('plugins.dap-config')]],
+	})
+
 	use("nvim-lua/plenary.nvim")
 	use("sainnhe/gruvbox-material")
 end)
