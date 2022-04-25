@@ -10,7 +10,7 @@ window:
   position:
     x: 1100
     y: 400
-  # decorations: none
+  decorations: none
 
 font:
   normal:
@@ -36,11 +36,6 @@ key_bindings:
   - { key: W,              mods: Control|Shift,                    action: Quit     }
   # - { key: F11,            mods: Control|Shift,                    action: ToggleFullscreen     }
 
-# mouse:
-#   url:
-#     launcher:
-#       program: open
-#     modifiers: Control
 
 # # Colors (Nord)
 # colors:

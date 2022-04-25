@@ -11,14 +11,16 @@ vim.cmd([[
 	colorscheme gruvbox-material
 ]])
 
+opt.guicursor = "n-v-c:block-Cursor"
 opt.cursorline = true
 opt.number = true
+opt.relativenumber = true
 opt.hidden = true
 opt.shortmess:append("cA")
 opt.showmode = false
 opt.laststatus = 3
 
-opt.completeopt = "menu,menuone"
+opt.completeopt = {'menuone', 'menu'}
 opt.incsearch = true
 opt.showmatch = true
 opt.ignorecase = true

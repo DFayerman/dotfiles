@@ -35,6 +35,9 @@ return require("packer").startup(function()
 		config = [[require('plugins.treesitter-config')]],
 	})
 
+	-- CoC
+	-- use({'neoclide/coc.nvim', branch = 'release'})
+
 	-- LSP
 	use({
 		"neovim/nvim-lspconfig",

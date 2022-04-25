@@ -12,7 +12,7 @@ for_window [class="zoom"] floating enable
 hide_edge_borders both
 # exec_always --no-startup-id sh ~/.fehbg
 # exec_always --no-startup-id xsetroot -solid "#C79081"
-exec_always --no-startup-id xwinwrap -g 3840x2160+0+0 -ov -ni -s -nf -b -un -argb -- mpv --geometry=3840x2160 -wid WID --loop --mute --fs ~/dotfiles/test.mp4
+exec_always --no-startup-id xwinwrap -g 2560x1440+0+0 -ov -ni -s -nf -b -un -argb -- mpv --geometry=2560x1440 -wid WID --loop --mute --fs ~/dotfiles/test.mp4
 
 # apply global gaps
 gaps inner 35

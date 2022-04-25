@@ -22,7 +22,7 @@ end
 vim.diagnostic.config({
 	virtual_text = {
 		source = "if_many",
-		prefix = "Σ",
+		prefix = "•",
 	},
 	float = {
 		border = "rounded",
@@ -260,28 +260,28 @@ lspconfig.yamlls.setup({
 })
 
 -- typescript server setup
-lspconfig.tsserver.setup({
-	root_dir = lspconfig.util.root_pattern("package.json"),
-	init_options = ts_utils.init_options,
-	on_attach = function(client, bufnr)
-		on_attach(client, bufnr)
+-- lspconfig.tsserver.setup({
+-- 	root_dir = lspconfig.util.root_pattern("package.json"),
+-- 	init_options = ts_utils.init_options,
+-- 	on_attach = function(client, bufnr)
+-- 		on_attach(client, bufnr)
 
-		ts_utils.setup({
-			import_all_scan_buffers = 100,
-			auto_inlay_hints = false,
-			update_imports_on_move = true,
-			filter_out_diagnostics_by_code = { 80001 },
-		})
-		ts_utils.setup_client(client)
-		bufmap(bufnr, "n", "gs", ":TSLspOrganize<CR>")
-		bufmap(bufnr, "n", "gI", ":TSLspRenameFile<CR>")
-		bufmap(bufnr, "n", "go", ":TSLspImportAll<CR>")
-	end,
-	capabilities = capabilities,
-	flags = {
-		debounce_text_changes = 150,
-	},
-})
+-- 		ts_utils.setup({
+-- 			import_all_scan_buffers = 100,
+-- 			auto_inlay_hints = false,
+-- 			update_imports_on_move = true,
+-- 			filter_out_diagnostics_by_code = { 80001 },
+-- 		})
+-- 		ts_utils.setup_client(client)
+-- 		bufmap(bufnr, "n", "gs", ":TSLspOrganize<CR>")
+-- 		bufmap(bufnr, "n", "gI", ":TSLspRenameFile<CR>")
+-- 		bufmap(bufnr, "n", "go", ":TSLspImportAll<CR>")
+-- 	end,
+-- 	capabilities = capabilities,
+-- 	flags = {
+-- 		debounce_text_changes = 150,
+-- 	},
+-- })
 
 -- null-ls setup
 local sources = {
@@ -290,7 +290,9 @@ local sources = {
 	b.formatting.stylua,
 	b.hover.dictionary,
 	b.diagnostics.write_good,
-	b.diagnostics.flake8,
+	b.diagnostics.flake8.with({
+		extra_args = { "--ignore", "E501,W505"}
+	}),
 }
 
 null_ls.setup({
@@ -302,7 +304,8 @@ for _, lsp in ipairs({
 	"gopls",
 	"html",
 	"cssls",
-	"rust_analyzer",
+	"tsserver",
+	-- "rust_analyzer",
 	"tailwindcss",
 	"pyright",
 }) do
