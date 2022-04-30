@@ -291,7 +291,7 @@ local sources = {
 	b.hover.dictionary,
 	b.diagnostics.write_good,
 	b.diagnostics.flake8.with({
-		extra_args = { "--ignore", "E501,W505"}
+		extra_args = { "--ignore", "E501,W505,F841"}
 	}),
 }
 

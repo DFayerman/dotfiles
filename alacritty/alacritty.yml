@@ -5,8 +5,8 @@ window:
     columns: 170
     lines: 70
   padding:
-    x: 10
-    y: 10
+    x: 1
+    y: 1
   position:
     x: 1100
     y: 400

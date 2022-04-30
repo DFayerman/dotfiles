@@ -6,8 +6,10 @@ alias c="clear";
 alias wget="wget -c";
 alias whatisthis="cat /etc/os-release"
 alias l="ls -sh1FAur --group-directories-first --color=auto"
+alias L="l"
 alias excel="/mnt/c/Program\ Files/Microsoft\ Office/root/Office16/EXCEL.EXE"
 alias whatsmyip="curl -s ip4only.me/api/ | grep -Eo '([0-9]{2,3}\.){3}[0-9]{1,3}'"
+alias amazon="export AWS_PROFILE=$1"
 # navigation
 alias ..="cd .."
 alias ~="cd ~"
@@ -94,7 +96,7 @@ update_go_latest() {
 }
 
 fix_chrome_client() {
-	sudo sed -i 's/Exec=\/usr\/bin\/google-chrome-stable/Exec=\/usr\/bin\/google-chrome-stable\ --force-device-scale-factor=1.5'
+	sudo sed -i 's/Exec=\/usr\/bin\/google-chrome-stable/Exec=\/usr\/bin\/google-chrome-stable\ --force-device-scale-factor=1.5/g' /usr/share/applications/google-chrome.desktop
 	echo "relog for changes to take effect"
 }
 
