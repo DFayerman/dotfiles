@@ -1,5 +1,5 @@
 -- required if opt = true for packer
-vim.cmd("packadd packer.nvim")
+vim.cmd [[packadd packer.nvim]]
 -- bootstrap packer
 -- local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 -- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -11,7 +11,6 @@ return require("packer").startup(function()
 
 	-- speed up Neovim runtime
 	use("lewis6991/impatient.nvim")
-	-- use({ "kyazdani42/nvim-web-devicons" })
 
 	use({
 		"nvim-lualine/lualine.nvim",
@@ -26,7 +25,6 @@ return require("packer").startup(function()
 	use("tpope/vim-commentary")
 	use("tpope/vim-eunuch")
 	use("tpope/vim-capslock")
-	-- use("tpope/vim-fugitive")
 
 	-- treesitter
 	use({
