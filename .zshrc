@@ -41,7 +41,8 @@ export LS_COLORS=$LS_COLORS:'di=1;35:ow=0;35:ex=1;94:ln=1;33:'
 export AWS_PROFILE=default
 
 if [[ $s(command -v fd) ]]; then
-	export FZF_DEFAULT_COMMAND='fd --follow -t f -H -E go/ -E node_modules/ -E .git -E .config $HOME .'
+	# export FZF_DEFAULT_COMMAND='fd --follow -t f -H --exclude .git $HOME .'
+	export FZF_CTRL_T_COMMAND='fd --follow -t f -H --exclude .git .'
 	export FZF_ALT_C_COMMAND='fd --follow -E go/ -E node_modules/ -E .git -t d . $HOME'
 fi
 

@@ -33,3 +33,7 @@ user-dirs.dirs
 user-dirs.locale
 Ferdi/
 coc/
+nautilus/
+obs-studio/
+cef_user_data/
+Google/

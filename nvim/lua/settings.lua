@@ -8,17 +8,18 @@ opt.cc = "80"
 
 vim.cmd([[
 	filetype plugin indent on
-	colorscheme gruvbox-material
+	colorscheme nordfox
 ]])
 
+-- colorscheme gruvbox-material
 opt.guicursor = "n-v-c:block-Cursor"
-opt.cursorline = true
 opt.number = true
 opt.relativenumber = true
 opt.hidden = true
 opt.shortmess:append("cA")
 opt.showmode = false
 opt.laststatus = 3
+-- opt.winbar = "%=%m %f"
 
 opt.completeopt = {'menuone', 'menu'}
 opt.incsearch = true

@@ -1,5 +1,5 @@
 -- required if opt = true for packer
-vim.cmd("packadd packer.nvim")
+vim.cmd [[packadd packer.nvim]]
 -- bootstrap packer
 -- local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 -- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -11,12 +11,10 @@ return require("packer").startup(function()
 
 	-- speed up Neovim runtime
 	use("lewis6991/impatient.nvim")
-	-- use({ "kyazdani42/nvim-web-devicons" })
 
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-		-- event = "VimEnter",
 		config = [[require('plugins.lualine-config')]],
 	})
 
@@ -26,7 +24,6 @@ return require("packer").startup(function()
 	use("tpope/vim-commentary")
 	use("tpope/vim-eunuch")
 	use("tpope/vim-capslock")
-	-- use("tpope/vim-fugitive")
 
 	-- treesitter
 	use({
@@ -107,16 +104,6 @@ return require("packer").startup(function()
 		config = [[require('plugins.indent-blankline-config')]],
 	})
 
-	-- markdown preview
-	use({
-		"iamcco/markdown-preview.nvim",
-		opt = true,
-		ft = { "markdown" },
-		config = "vim.cmd[[doautocmd BufEnter]]",
-		run = "cd app && yarn install",
-		cmd = "MarkdownPreview",
-	})
-
 	-- fuzzy finder
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -136,5 +123,6 @@ return require("packer").startup(function()
 	})
 
 	use("nvim-lua/plenary.nvim")
-	use("sainnhe/gruvbox-material")
+	-- use("sainnhe/gruvbox-material")
+	use("EdenEast/nightfox.nvim")
 end)
