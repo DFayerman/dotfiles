@@ -33,6 +33,7 @@ if [ -d $HOME/.cargo ]; then
 	export PATH=$HOME/.cargo/bin:$PATH
 fi
 
+# this should be moved to /etc/profile.d/<newfile>
 export XDG_CONFIG_HOME=$HOME/dotfiles
 export EDITOR='nvim'
 export COLORTERM=truecolor
@@ -53,7 +54,12 @@ source $HOME/.config/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f $XDG_CONFIG_HOME/.p10k.zsh ]] || source $XDG_CONFIG_HOME/.p10k.zsh
 
 source $HOME/dotfiles/keybindings.zsh
-source /usr/share/doc/fzf/examples/key-bindings.zsh
+
+if [ -f "/etc/arch-release" ]; then
+	source /usr/share/fzf/key-bindings.zsh
+else
+	source /usr/share/doc/fzf/examples/key-bindings.zsh
+fi
 
 eval "$(pyenv init -)"
 
