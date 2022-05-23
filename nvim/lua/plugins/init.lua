@@ -15,7 +15,6 @@ return require("packer").startup(function()
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-		-- event = "VimEnter",
 		config = [[require('plugins.lualine-config')]],
 	})
 
@@ -103,16 +102,6 @@ return require("packer").startup(function()
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = [[require('plugins.indent-blankline-config')]],
-	})
-
-	-- markdown preview
-	use({
-		"iamcco/markdown-preview.nvim",
-		opt = true,
-		ft = { "markdown" },
-		config = "vim.cmd[[doautocmd BufEnter]]",
-		run = "cd app && yarn install",
-		cmd = "MarkdownPreview",
 	})
 
 	-- fuzzy finder

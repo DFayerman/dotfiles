@@ -252,9 +252,9 @@ lspconfig.yamlls.setup({
 
 -- null-ls setup
 local sources = {
-	b.formatting.prettier,
-	b.formatting.goimports,
-	b.formatting.stylua,
+	-- b.formatting.prettier,
+	-- b.formatting.goimports,
+	-- b.formatting.stylua,
 	b.hover.dictionary,
 	b.diagnostics.write_good,
 	b.diagnostics.flake8.with({

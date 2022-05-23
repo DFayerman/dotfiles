@@ -41,7 +41,8 @@ require("lualine").setup({
 			{
 				"buffers",
 				mode = 2,
-				show_filename_only = false,
+				show_filename_only = true,
+				max_length = vim.o.columns * 4 / 3
 			},
 		},
 	},

@@ -10,9 +10,9 @@ font pango:UbuntuMono 10
 for_window [class=".*"] border pixel 4
 for_window [class="zoom"] floating enable
 hide_edge_borders both
-# exec_always --no-startup-id sh ~/.fehbg
+exec_always --no-startup-id sh ~/.fehbg
 # exec_always --no-startup-id xsetroot -solid "#C79081"
-exec_always --no-startup-id xwinwrap -g 3840x2160+0+0 -ov -ni -s -nf -b -un -argb -- mpv --geometry=3840x2160 -wid WID --loop --mute --fs ~/dotfiles/test.mp4
+# exec_always --no-startup-id xwinwrap -g 3840x2160+0+0 -ov -ni -s -nf -b -un -argb -- mpv --geometry=3840x2160 -wid WID --loop --mute --fs ~/dotfiles/test.mp4
 
 # apply global gaps
 gaps inner 35
