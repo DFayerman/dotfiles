@@ -7,7 +7,7 @@ font pango:UbuntuMono 10
 
 # disable window title bars
 # you can also use any non-zero value if you'd like to have a border
-for_window [class=".*"] border pixel 4
+for_window [class=".*"] border pixel 0
 for_window [class="zoom"] floating enable
 hide_edge_borders both
 exec_always --no-startup-id sh ~/.fehbg

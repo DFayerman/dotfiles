@@ -123,5 +123,6 @@ return require("packer").startup(function()
 	})
 
 	use("nvim-lua/plenary.nvim")
-	use("sainnhe/gruvbox-material")
+	-- use("sainnhe/gruvbox-material")
+	use("EdenEast/nightfox.nvim")
 end)

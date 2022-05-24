@@ -40,9 +40,12 @@ require("lualine").setup({
 		lualine_a = {
 			{
 				"buffers",
-				mode = 2,
+				mode = 0,
 				show_filename_only = true,
-				max_length = vim.o.columns * 4 / 3
+				max_length = vim.o.columns * 4 / 3,
+				symbols = {
+					alternate_file=''
+				},
 			},
 		},
 	},
