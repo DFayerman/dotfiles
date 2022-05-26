@@ -115,6 +115,10 @@ get_current_pyenv() {
 	pyenv version | grep -Eo "([[:digit:]]{1,2}\.){2}[[:digit:]]{1,2}"
 }
 
+use_for_zoom() {
+	xcompmgr -c -l0 -t0 -r0 -o.00
+}
+
 ## keybindings
 
 bindkey -s '^f' 'fzf_find_and_open\n'

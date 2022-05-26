@@ -122,6 +122,9 @@ return require("packer").startup(function()
 		config = [[require('plugins.dap-config')]],
 	})
 
+	-- floating terminal
+	use('voldikss/vim-floaterm')
+
 	use("nvim-lua/plenary.nvim")
 	-- use("sainnhe/gruvbox-material")
 	use("EdenEast/nightfox.nvim")

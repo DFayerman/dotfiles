@@ -43,10 +43,11 @@ nmap("<TAB>", ":bnext<CR>")
 nmap("<S-TAB>", ":bprevious<CR>")
 nmap("<BS>", ":bprevious<CR>")
 -- open terminal + jump to current file's directory
-nmap(
-	"<M-`>",
-	':let $VIM_DIR=expand("%:p:h")<CR>:terminal<CR>acd $VIM_DIR<CR>clear<CR>'
-)
+-- nmap(
+-- 	"<M-`>",
+-- 	':let $VIM_DIR=expand("%:p:h")<CR>:FloatermToggle<CR>acd $VIM_DIR<CR>clear<CR>'
+-- )
+nmap("<M-`>", ':FloatermToggle<CR>')
 -- fuzzy finder
 nmap("<C-p>", ":Telescope find_files<CR>")
 -- VSCode-style close file (overwrites viewport prefix)
