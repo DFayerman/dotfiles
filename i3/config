@@ -13,6 +13,8 @@ hide_edge_borders both
 exec_always --no-startup-id sh ~/.fehbg
 # exec_always --no-startup-id xsetroot -solid "#C79081"
 # exec_always --no-startup-id xwinwrap -g 3840x2160+0+0 -ov -ni -s -nf -b -un -argb -- mpv --geometry=3840x2160 -wid WID --loop --mute --fs ~/dotfiles/test.mp4
+exec_always --no-startup-id sh ~/dotfiles/polybar/launch.sh
+exec_always --no-startup-id picom --config ~/dotfiles/picom.conf -b
 
 # apply global gaps
 gaps inner 35
@@ -51,7 +53,8 @@ bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
 # bindsym $mod+s exec dmenu_run
 # bindsym $mod+s exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+s exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -nf '#928374' -nb '#1D2021' -sb '#689D6A' -sf '#282828' -fn 'UbuntuMono-10' -p 'dmenu >'"
+# bindsym $mod+s exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -nf '#928374' -nb '#1D2021' -sb '#689D6A' -sf '#282828' -fn 'UbuntuMono-10' -p 'dmenu >'"
+bindsym $mod+s exec --no-startup-id "rofi -show-icons -theme $HOME/dotfiles/polybar/shapes/scripts/rofi/styles.rasi -font 'UbuntuMono 10' -display-drun 'LEGGO' -show drun"
 
 # change focus
 bindsym $mod+h focus left
@@ -184,20 +187,3 @@ client.urgent           #CC241D #CC241D #EBDBB2 #282828   #CC241D
 client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 
 client.background       #FFFFFF
-
-bar {
-	position top
-  colors {
-    background #282828
-    statusline #EBDBB2
-    separator  #928374
-
-    focused_workspace  #689D6A #689D6A #282828
-    active_workspace   #1D2021 #1D2021 #928374
-    inactive_workspace #32302F #32302F #928374
-    urgent_workspace   #CC241D #CC241D #EBDBB2
-    binding_mode       #2F343A #900000 #FFFFFF
-  }
-	status_command i3status --config ~/dotfiles/i3/i3status.conf
-}
-

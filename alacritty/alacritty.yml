@@ -4,10 +4,10 @@ window:
   dimensions:
     columns: 170
     lines: 70
-  dynamic_padding: true
-  # padding:
-  #   x: 1
-  #   y: 1
+  # dynamic_padding: true
+  padding:
+    x: 5
+    y: 5
   position:
     x: 1100
     y: 400
