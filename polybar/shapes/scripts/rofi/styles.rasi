@@ -1,14 +1,5 @@
-/*
- *
- * Author  : Aditya Shakya
- * Mail    : adi1090x@gmail.com
- * Github  : @adi1090x
- * Twitter : @adi1090x
- *
- */
-
 configuration {
-		font:							"JetBrainsMono Nerd Font 16";
+		font:							"Iosevka Nerd Font 18";
 		show-icons:                     true;
 		icon-theme: 					"Papirus";
 		display-drun: 					"";
@@ -39,7 +30,7 @@ prompt {
 		padding: 						8px 15px 10px 15px;
 		background-color: 				@bg1;
 		text-color: 					#FFFFFF;
-		font:							"JetBrainsMono Nerd Font 18";
+		font:							"Iosevka Nerd Font 20";
 }
 
 entry {
@@ -95,13 +86,13 @@ element {
 }
 
 element-icon {
-    size:                           24px;
+    size:                           32px;
     border:                         0px;
 		background-color: @al;
 }
 
 element-text {
-		font:							"JetBrainsMono Nerd Font 16";
+		font:							"Iosevka Nerd Font 18";
     expand:                         true;
     horizontal-align:               0.5;
     vertical-align:                 0.5;

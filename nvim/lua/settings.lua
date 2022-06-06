@@ -8,7 +8,10 @@ opt.cc = "80"
 
 vim.cmd([[
 	filetype plugin indent on
-	colorscheme nordfox
+	colorscheme gruvbox-material
+	highlight Normal guibg=none
+	highlight NonText guibg=none
+	highlight EndOfBuffer guibg=none
 ]])
 
 -- colorscheme gruvbox-material

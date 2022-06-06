@@ -7,7 +7,9 @@ killall -q polybar
 
 # while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-# polybar -c $HOME/dotfiles/polybar/nord/config.ini main 2>&1 | tee -a /tmp/polybar.log & disown
-polybar -c $HOME/dotfiles/polybar/shapes/config.ini main 2>&1 | tee -a /tmp/polybar.log & disown
+POLYDIR=$HOME/dotfiles/polybar/shapes/config.ini
+POLYNAME=main
+
+polybar -c $POLYDIR $POLYNAME 2>&1 | tee -a /tmp/polybar.log & disown
 
 echo "Polybar launched..."

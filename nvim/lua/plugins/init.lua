@@ -1,5 +1,5 @@
--- required if opt = true for packer
-vim.cmd [[packadd packer.nvim]]
+vim.cmd [[packadd packer.nvim]]  -- required if opt = true for packer
+
 -- bootstrap packer
 -- local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 -- if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -12,6 +12,7 @@ return require("packer").startup(function()
 	-- speed up Neovim runtime
 	use("lewis6991/impatient.nvim")
 
+	-- statusline, tabline
 	use({
 		"nvim-lualine/lualine.nvim",
 		requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -19,7 +20,7 @@ return require("packer").startup(function()
 	})
 
 	-- fast comment, bracket text subjects and motions, helpful commands from
-	-- Pope Daddy himself
+	-- a dwarven thurmalogical sage
 	use("tpope/vim-surround")
 	use("tpope/vim-commentary")
 	use("tpope/vim-eunuch")
@@ -126,6 +127,8 @@ return require("packer").startup(function()
 	use('voldikss/vim-floaterm')
 
 	use("nvim-lua/plenary.nvim")
-	-- use("sainnhe/gruvbox-material")
-	use("EdenEast/nightfox.nvim")
+
+	-- colorschemes
+	use("sainnhe/gruvbox-material")
+	-- use("EdenEast/nightfox.nvim")
 end)

@@ -3,8 +3,7 @@
 # install Neovim nightly or upgrade
 which nvim
 nvim -v
-mkdir -p ~/tmp
-cd ~/tmp
+cd /opt
 
 if [ -d "neovim" ]
 then

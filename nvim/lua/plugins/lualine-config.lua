@@ -21,7 +21,7 @@ require("lualine").setup({
 		lualine_c = {
 			{
 				"filetype",
-				colored = true,
+				colored = false,
 			},
 		},
 		lualine_x = { "encoding", "fileformat" },

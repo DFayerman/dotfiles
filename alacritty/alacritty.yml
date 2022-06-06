@@ -4,14 +4,15 @@ window:
   dimensions:
     columns: 170
     lines: 70
-  # dynamic_padding: true
-  padding:
-    x: 5
-    y: 5
+  dynamic_padding: true
+  # padding:
+  #   x: 5
+  #   y: 5
   position:
     x: 1100
     y: 400
   decorations: none
+  opacity: 0.8
 
 font:
   normal:
@@ -33,8 +34,8 @@ shell:
   args:
     - --login
 
-key_bindings:
-  - { key: W,              mods: Control|Shift,                    action: Quit     }
+# key_bindings:
+  # - { key: W,              mods: Control|Shift,                    action: Quit     }
   # - { key: F11,            mods: Control|Shift,                    action: ToggleFullscreen     }
 
 mouse:
@@ -80,6 +81,7 @@ colors:
   # Primary colors
   primary:
     background: '0x1c1e26'
+    # background: '0x000085'
     foreground: '0xe0e0e0'
 
   # Normal colors

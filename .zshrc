@@ -7,7 +7,7 @@ fi
 
 export SHELL=/bin/zsh
 export PYENV_ROOT=$HOME/.pyenv
-export PATH=$HOME/.local/bin:usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 if hash yarn 2>/dev/null; then
 	export PATH="$PATH:$(yarn global bin)"
@@ -53,6 +53,13 @@ export NVM_DIR="$HOME/.config/.nvm"
 
 source $HOME/.config/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f $XDG_CONFIG_HOME/.p10k.zsh ]] || source $XDG_CONFIG_HOME/.p10k.zsh
+
+# ZSH completion?
+# autoload -Uz compinit
+# compinit
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C '/usr/bin/aws_completer' aws
 
 source $HOME/dotfiles/keybindings.zsh
 

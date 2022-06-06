@@ -56,16 +56,18 @@ fi
 }
 
 update() {
-	sudo apt update
-	sudo apt -y upgrade
-	sudo apt autoremove --purge
+	yay -Syyu
 	echo -n ".\n.\n.\n.\nUpdate NPM global packages (y/n)?"
 	read answer
-	if [ "$answer" != "${answer#[Yy]}" ] ;then 
+	if [ "$answer" != "${answer#[Yy]}" ]; then 
 			npm -g update
 	else
 			echo "go nuts.."
 	fi
+}
+
+pacman_autoremove() {
+	sudo pacman -Qdtq | sudo pacman -Rs - 
 }
 
 update_nvim_nightly() {
@@ -95,6 +97,7 @@ update_go_latest() {
 	echo "updated to $(go version)"
 }
 
+# forces scale flag on chrome desktop file
 fix_chrome_client() {
 	sudo sed -i 's/Exec=\/usr\/bin\/google-chrome-stable/Exec=\/usr\/bin\/google-chrome-stable\ --force-device-scale-factor=1.5/g' /usr/share/applications/google-chrome.desktop
 	echo "relog for changes to take effect"
