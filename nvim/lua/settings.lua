@@ -9,12 +9,13 @@ opt.cc = "80"
 vim.cmd([[
 	filetype plugin indent on
 	colorscheme gruvbox-material
-	highlight Normal guibg=none
-	highlight NonText guibg=none
-	highlight EndOfBuffer guibg=none
 ]])
 
--- colorscheme gruvbox-material
+
+-- 	highlight Normal guibg=black
+-- 	highlight Normal guifg=#FFB642
+-- 	highlight NonText guibg=black
+-- 	highlight EndOfBuffer guibg=black
 opt.guicursor = "n-v-c:block-Cursor"
 opt.number = true
 opt.relativenumber = true
@@ -22,7 +23,6 @@ opt.hidden = true
 opt.shortmess:append("cA")
 opt.showmode = false
 opt.laststatus = 3
--- opt.winbar = "%=%m %f"
 
 opt.completeopt = {'menuone', 'menu'}
 opt.incsearch = true
@@ -40,7 +40,7 @@ opt.wrap = false
 opt.mouse = "a"
 opt.clipboard = "unnamedplus"
 
-opt.cmdheight = 2
+opt.cmdheight = 0
 opt.updatetime = 150
 opt.timeoutlen = 250
 

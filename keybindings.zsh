@@ -36,6 +36,8 @@ if [[ -f '/usr/local/bin/nvim' ]]; then
 	alias n="nvim"
 	alias vim="nvim"
 	alias bnvim="nvim"
+	alias nivm="nvim"
+	alias vnivm="nvim"
 	alias nv="nvim"
 	alias nvi="nvim"
 	alias vi="nvim"

@@ -33,15 +33,12 @@ if [ -d $HOME/.cargo ]; then
 	export PATH=$HOME/.cargo/bin:$PATH
 fi
 
-# this should be moved to /etc/profile.d/<newfile>
-export XDG_CONFIG_HOME=$HOME/dotfiles
 export EDITOR='nvim'
 export COLORTERM=truecolor
 export LS_COLORS=$LS_COLORS:'di=1;35:ow=0;35:ex=1;94:ln=1;33:'
 export AWS_PROFILE=default
 
 if [[ $s(command -v fd) ]]; then
-	# export FZF_DEFAULT_COMMAND='fd --follow -t f -H --exclude .git $HOME .'
 	export FZF_CTRL_T_COMMAND='fd --follow -t f -H --exclude .git .'
 	export FZF_ALT_C_COMMAND='fd --follow -E go/ -E node_modules/ -E .git -t d . $HOME'
 fi

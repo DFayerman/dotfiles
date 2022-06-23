@@ -86,7 +86,7 @@
     # section for how to disable this if necessary
     # idle_threshold = 120
 
-    font = Iosevka Nerd Font 9
+    font = Iosevka Nerd Font 10
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.

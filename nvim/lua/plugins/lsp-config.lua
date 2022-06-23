@@ -220,7 +220,8 @@ lspconfig.yamlls.setup({
 	settings = {
 		yaml = {
 			schemas = {
-				["https://raw.githubusercontent.com/lalcebo/json-schema/master/serverless/reference.json"] = "/*"
+				[ "https://raw.githubusercontent.com/lalcebo/json-schema/master/serverless/reference.json" ] = "/*serverless*",
+				[ "https://json.schemastore.org/github-workflow.json" ] = "/*workflow*",
 			}
 		},
 	}
@@ -260,12 +261,6 @@ local sources = {
 	b.diagnostics.flake8.with({
 		extra_args = { "--ignore", "E501,W505,F841"}
 	}),
-	-- b.diagnostics.sqlfluff.with({
-	-- 	extra_args = {"--dialect", "postgres"}
-	-- }),
-	-- b.formatting.sqlfluff.with({
-	-- 	extra_args = {"--dialect", "postgres"}
-	-- }),
 }
 
 null_ls.setup({
@@ -278,7 +273,7 @@ for _, lsp in ipairs({
 	"html",
 	"cssls",
 	"tsserver",
-	"tailwindcss",
+	-- "tailwindcss",
 	"pyright",
 }) do
 	lspconfig[lsp].setup({

@@ -36,6 +36,9 @@ return require("packer").startup(function()
 	-- CoC
 	-- use({'neoclide/coc.nvim', branch = 'release'})
 
+	-- java
+	use('mfussenegger/nvim-jdtls')
+
 	-- LSP
 	use({
 		"neovim/nvim-lspconfig",

@@ -16,7 +16,7 @@ cmp.setup({
 	},
 	completion = {
 		completeopt = "menuone,noinsert",
-		keyword_length = 2,
+		keyword_length = 1,
 	},
 	mapping = {
 		["<CR>"] = cmp.mapping.confirm({
@@ -43,11 +43,11 @@ cmp.setup({
 		end,
 	},
 	sources = cmp.config.sources({
-		{ name = "luasnip", priority = 9999 },
-		{ name = "nvim_lsp" , priority = 9998},
+		{ name = "nvim_lsp" , priority = 9999},
+		{ name = "luasnip", priority = 9998 },
 	}, {
-		{ name = "path" , priority=9998},
+		{ name = "path" , priority=9997},
 		{ name = "nvim_lua" },
-		{ name = "buffer" },
+		-- { name = "buffer" },
 	})
 })

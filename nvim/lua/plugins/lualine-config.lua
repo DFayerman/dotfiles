@@ -3,8 +3,10 @@ require("lualine").setup({
 		icons_enabled = true,
 		globalstatus = true,
 		theme = "auto",
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
+		-- component_separators = { left = "", right = "" },
+		-- section_separators = { left = "", right = "" },
+		component_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
 		disabled_filetypes = {},
 		always_divide_middle = false,
 	},
@@ -42,7 +44,7 @@ require("lualine").setup({
 				"buffers",
 				mode = 0,
 				show_filename_only = true,
-				max_length = vim.o.columns * 4 / 3,
+				max_length = vim.o.columns * 2 / 3,
 				symbols = {
 					alternate_file=''
 				},
