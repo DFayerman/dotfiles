@@ -40,7 +40,7 @@ opt.wrap = false
 opt.mouse = "a"
 opt.clipboard = "unnamedplus"
 
-opt.cmdheight = 0
+opt.cmdheight = 1
 opt.updatetime = 150
 opt.timeoutlen = 250
 

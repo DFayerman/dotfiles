@@ -42,4 +42,5 @@ polybar-collection/
 GIMP/
 newyawk.jpg
 electron-1/
-gorg.jpg
+*.jpg
+*.png

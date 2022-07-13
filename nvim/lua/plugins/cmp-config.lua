@@ -1,11 +1,10 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
-local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 cmp.setup({
 	formatting = {
 		format = require("lspkind").cmp_format({
-			mode = "symbol_text",
+			mode = "symbol",
 			maxwidth = 50,
 		}),
 	},

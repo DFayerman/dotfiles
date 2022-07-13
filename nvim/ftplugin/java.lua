@@ -68,7 +68,8 @@ local on_attach = function(client, bufnr)
 	require('illuminate').on_attach(client)
 end
 
-
+local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+local workspace_dir = '/home/donker/' .. project_name
 
 local config = {
   cmd = {
@@ -84,7 +85,7 @@ local config = {
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
     '-jar', '/usr/share/java/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
     '-configuration', '/usr/share/java/jdtls/config_linux',
-    '-data', '$0'
+    '-data', workspace_dir
   },
   root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
 	on_attach = on_attach,

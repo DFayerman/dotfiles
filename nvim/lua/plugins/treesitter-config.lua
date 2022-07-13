@@ -6,6 +6,7 @@ require("nvim-treesitter.configs").setup({
 		"html",
 		"http",
 		"dockerfile",
+		"java",
 		"javascript",
 		"json",
 		"lua",

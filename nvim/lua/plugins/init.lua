@@ -20,11 +20,10 @@ return require("packer").startup(function()
 	})
 
 	-- fast comment, bracket text subjects and motions, helpful commands from
-	-- a dwarven thurmalogical sage
+	-- a dwarven thurmalogical sage from Boston
 	use("tpope/vim-surround")
 	use("tpope/vim-commentary")
 	use("tpope/vim-eunuch")
-	use("tpope/vim-capslock")
 
 	-- treesitter
 	use({
@@ -33,19 +32,17 @@ return require("packer").startup(function()
 		config = [[require('plugins.treesitter-config')]],
 	})
 
-	-- CoC
-	-- use({'neoclide/coc.nvim', branch = 'release'})
-
-	-- java
-	use('mfussenegger/nvim-jdtls')
-
 	-- LSP
 	use({
 		"neovim/nvim-lspconfig",
 		config = [[require('plugins.lsp-config')]],
 	})
+
+	-- custom LSP sources
 	use("jose-elias-alvarez/null-ls.nvim")
-	use("jose-elias-alvarez/nvim-lsp-ts-utils")
+
+	-- java
+	use('mfussenegger/nvim-jdtls')
 
 	-- snippets
 	use({
@@ -71,11 +68,11 @@ return require("packer").startup(function()
 	})
 
 	-- completion kinds and version control signs on side
+	use("onsails/lspkind-nvim")
 	use({
 		"lewis6991/gitsigns.nvim",
 		config = [[require('plugins.gitsigns-config')]],
 	})
-	use("onsails/lspkind-nvim")
 
 	-- autopair
 	use({
@@ -84,10 +81,10 @@ return require("packer").startup(function()
 		wants = "nvim-cmp",
 	})
 
-	use({
-		"windwp/nvim-ts-autotag",
-		config = [[require('plugins.ts-autotag-config')]],
-	})
+	-- use({
+	-- 	"windwp/nvim-ts-autotag",
+	-- 	config = [[require('plugins.ts-autotag-config')]],
+	-- })
 
 	use({
 		"kyazdani42/nvim-tree.lua",
@@ -99,10 +96,12 @@ return require("packer").startup(function()
 
 	-- highlight current word and other instances
 	use("RRethy/vim-illuminate")
-	use({
-		"lukas-reineke/headlines.nvim",
-		config = [[require('plugins.headlines-config')]],
-	})
+
+	-- use({
+	-- 	"lukas-reineke/headlines.nvim",
+	-- 	config = [[require('plugins.headlines-config')]],
+	-- })
+
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = [[require('plugins.indent-blankline-config')]],

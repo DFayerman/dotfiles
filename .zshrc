@@ -33,7 +33,7 @@ if [ -d $HOME/.cargo ]; then
 	export PATH=$HOME/.cargo/bin:$PATH
 fi
 
-export EDITOR='nvim'
+# export EDITOR='nvim'
 export COLORTERM=truecolor
 export LS_COLORS=$LS_COLORS:'di=1;35:ow=0;35:ex=1;94:ln=1;33:'
 export AWS_PROFILE=default
