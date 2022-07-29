@@ -41,6 +41,7 @@ export AWS_PROFILE=default
 if [[ $s(command -v fd) ]]; then
 	export FZF_CTRL_T_COMMAND='fd --follow -t f -H --exclude .git .'
 	export FZF_ALT_C_COMMAND='fd --follow -E go/ -E node_modules/ -E .git -t d . $HOME'
+	# export FZF_ALT_C_COMMAND='fd --follow -E go/ -E node_modules/ -E .git -E agilitek -t d . $HOME'
 fi
 
 export NVM_DIR="$HOME/.config/.nvm"

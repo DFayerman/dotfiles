@@ -42,7 +42,7 @@ return require("packer").startup(function()
 	use("jose-elias-alvarez/null-ls.nvim")
 
 	-- java
-	use('mfussenegger/nvim-jdtls')
+	-- use('mfussenegger/nvim-jdtls')
 
 	-- snippets
 	use({
@@ -81,10 +81,10 @@ return require("packer").startup(function()
 		wants = "nvim-cmp",
 	})
 
-	-- use({
-	-- 	"windwp/nvim-ts-autotag",
-	-- 	config = [[require('plugins.ts-autotag-config')]],
-	-- })
+	use({
+		"windwp/nvim-ts-autotag",
+		config = [[require('plugins.ts-autotag-config')]],
+	})
 
 	use({
 		"kyazdani42/nvim-tree.lua",
@@ -96,11 +96,6 @@ return require("packer").startup(function()
 
 	-- highlight current word and other instances
 	use("RRethy/vim-illuminate")
-
-	-- use({
-	-- 	"lukas-reineke/headlines.nvim",
-	-- 	config = [[require('plugins.headlines-config')]],
-	-- })
 
 	use({
 		"lukas-reineke/indent-blankline.nvim",
@@ -120,10 +115,10 @@ return require("packer").startup(function()
 	})
 
 	-- debugger
-	use({ 
-		"mfussenegger/nvim-dap",
-		config = [[require('plugins.dap-config')]],
-	})
+	-- use({ 
+	-- 	"mfussenegger/nvim-dap",
+	-- 	config = [[require('plugins.dap-config')]],
+	-- })
 
 	-- floating terminal
 	use('voldikss/vim-floaterm')

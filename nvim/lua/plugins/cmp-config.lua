@@ -4,8 +4,7 @@ local luasnip = require("luasnip")
 cmp.setup({
 	formatting = {
 		format = require("lspkind").cmp_format({
-			mode = "symbol",
-			maxwidth = 50,
+			mode = "symbol_text",
 		}),
 	},
 	snippet = {

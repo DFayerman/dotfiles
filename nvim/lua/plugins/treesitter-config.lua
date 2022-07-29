@@ -14,9 +14,11 @@ require("nvim-treesitter.configs").setup({
 		"python",
 		"regex",
 		"rust",
+		"sql",
 		"tsx",
 		"typescript",
 		"vim",
+		"yaml",
 	},
 	highlight = {
 		enable = true,

@@ -23,5 +23,12 @@ ls.snippets = {
 		}),
 	},
 }
-require("luasnip/loaders/from_vscode").load({include = {"html", "javascript", "typescript", "python", "go"}})
+require("luasnip/loaders/from_vscode").load({include = {
+	"html",
+	"javascript",
+	"typescript",
+	"python",
+	"go",
+	"react-ts"
+}})
 

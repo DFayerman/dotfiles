@@ -7,7 +7,6 @@ alias wget="wget -c";
 alias whatisthis="cat /etc/os-release"
 alias l="ls -sh1FAur --group-directories-first --color=auto"
 alias L="l"
-alias excel="/mnt/c/Program\ Files/Microsoft\ Office/root/Office16/EXCEL.EXE"
 alias whatsmyip="curl -s ip4only.me/api/ | grep -Eo '([0-9]{2,3}\.){3}[0-9]{1,3}'"
 # navigation
 alias ..="cd .."
@@ -23,11 +22,13 @@ alias activate='source .venv/bin/activate'
 alias ga="git add -A"
 alias gcm="git commit -m"
 alias gs='git status'
+alias gco='git checkout'
 # tmux
 alias tmux="tmux -f ~/dotfiles/tmux.conf"
-alias tm="tmux a || tmux new-session -s $1"
+alias tm="tmux new-session -s $1"
 alias td='tmux detach'
 alias tmls='tmux list-sessions'
+alias ta="tmux attach"
 
 ## Neovim aliases for sanity
 if [[ -f '/usr/local/bin/nvim' ]]; then

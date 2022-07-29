@@ -66,3 +66,5 @@ nmap("<C-l>", "<C-w>l")
 imap("<C-l>", "<Esc><C-w>l")
 nmap("<C-h>", "<C-w>h")
 imap("<C-h>", "<Esc><C-w>h")
+-- update
+nmap("<M-u>", ":PackerSync<CR>")

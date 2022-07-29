@@ -167,7 +167,6 @@ lspconfig.yamlls.setup({
 	}
 })
 
-
 -- null-ls setup
 local sources = {
 	-- b.formatting.prettier,

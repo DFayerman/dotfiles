@@ -9,13 +9,13 @@ opt.cc = "80"
 vim.cmd([[
 	filetype plugin indent on
 	colorscheme gruvbox-material
+	highlight Normal guibg=none
+	highlight Normal guifg=none
+	highlight NonText guibg=none
+	highlight EndOfBuffer guibg=none
 ]])
 
 
--- 	highlight Normal guibg=black
--- 	highlight Normal guifg=#FFB642
--- 	highlight NonText guibg=black
--- 	highlight EndOfBuffer guibg=black
 opt.guicursor = "n-v-c:block-Cursor"
 opt.number = true
 opt.relativenumber = true
