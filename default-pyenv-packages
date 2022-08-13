@@ -6,4 +6,5 @@ neovim-remote
 
 flake8
 pip-autoremove
+pytest
 

@@ -69,7 +69,7 @@ local on_attach = function(client, bufnr)
 end
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-local workspace_dir = '/home/donker/' .. project_name
+local workspace_dir = vim.fn.resolve('/home/donker/' .. project_name)
 
 local config = {
   cmd = {

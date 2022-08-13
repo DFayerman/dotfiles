@@ -61,6 +61,8 @@ vim.api.nvim_set_keymap(
 tmap("<Esc>", "<C-\\><C-n>")
 -- toggle Nvim-Tree
 nmap("<Leader><TAB>", ":NvimTreeToggle<CR>")
+-- create annotation (Neogen)
+nmap("<M-a>", ":Neogen<CR>")
 -- move between splits
 nmap("<C-l>", "<C-w>l")
 imap("<C-l>", "<Esc><C-w>l")

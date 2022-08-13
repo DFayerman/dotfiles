@@ -41,8 +41,13 @@ return require("packer").startup(function()
 	-- custom LSP sources
 	use("jose-elias-alvarez/null-ls.nvim")
 
+	use({
+		"danymat/neogen",
+		config = [[require('plugins.neogen-config')]]
+	})
+
 	-- java
-	-- use('mfussenegger/nvim-jdtls')
+	use('mfussenegger/nvim-jdtls')
 
 	-- snippets
 	use({
@@ -60,7 +65,7 @@ return require("packer").startup(function()
 		requires = {
 			"hrsh7th/cmp-nvim-lsp",
 			"saadparwaiz1/cmp_luasnip",
-			"hrsh7th/cmp-buffer",
+			-- "hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lua",
 		},
