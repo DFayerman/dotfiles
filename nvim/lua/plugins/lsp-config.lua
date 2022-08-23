@@ -33,7 +33,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 
 -- capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = nvim_cmp.update_capabilities(capabilities)
+-- capabilities = nvim_cmp.update_capabilities(capabilities)
 
 -- remap helper
 local bufmap = function(bufnr, mode, lhs, rhs, opts)
@@ -174,7 +174,6 @@ local sources = {
 	-- b.formatting.stylua,
 	b.formatting.shfmt,
 	b.hover.dictionary,
-	b.diagnostics.write_good,
 	b.diagnostics.flake8.with({
 		extra_args = { "--ignore", "E501,W505,F841"}
 	}),

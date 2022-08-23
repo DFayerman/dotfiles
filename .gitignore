@@ -45,3 +45,5 @@ electron-1/
 *.jpg
 *.png
 calibre/
+JetBrains/
+irb/

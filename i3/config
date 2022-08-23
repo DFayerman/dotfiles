@@ -54,10 +54,7 @@ bindsym $mod+Return exec --no-startup-id alacritty --config-file $HOME/dotfiles/
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-# bindsym $mod+s exec dmenu_run
-# bindsym $mod+s exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -nf '#928374' -nb '#1D2021' -sb '#689D6A' -sf '#282828' -fn 'UbuntuMono-10' -p 'dmenu >'"
-# bindsym $mod+s exec --no-startup-id "rofi -show-icons -theme $HOME/dotfiles/polybar/shapes/scripts/rofi/styles.rasi -display-drun 'LEGGO' -show drun"
+# start dmenu
 bindsym $mod+s exec --no-startup-id "rofi -show-icons -theme $HOME/dotfiles/rofi/misc.rasi -display-drun 'LEGGO' -show drun"
 
 # change focus

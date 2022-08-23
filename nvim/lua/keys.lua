@@ -70,3 +70,21 @@ nmap("<C-h>", "<C-w>h")
 imap("<C-h>", "<Esc><C-w>h")
 -- update
 nmap("<M-u>", ":PackerSync<CR>")
+-- vim.api.nvim_set_keymap(
+-- 	"i",
+-- 	"<CR>",
+-- 	[[ coc#pum#visible() ? coc#pum#confirm() : "<CR>" ]],
+-- 	{ noremap = true, expr = true }
+-- )
+-- vim.api.nvim_set_keymap(
+-- 	"i",
+-- 	"<Tab>",
+-- 	[[ coc#pum#visible() ? coc#pum#next(1) : "\<Tab>" ]],
+-- 	{ noremap = true, expr = true }
+-- )
+-- vim.api.nvim_set_keymap(
+-- 	"i",
+-- 	"<S-Tab>",
+-- 	[[ coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>" ]],
+-- 	{ noremap = true, expr = true }
+-- )

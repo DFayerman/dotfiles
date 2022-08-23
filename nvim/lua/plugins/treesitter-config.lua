@@ -13,6 +13,7 @@ require("nvim-treesitter.configs").setup({
 		"markdown",
 		"python",
 		"regex",
+		"ruby",
 		"rust",
 		"sql",
 		"tsx",

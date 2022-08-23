@@ -1,12 +1,4 @@
-# ZSH run commands
-
-
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 export SHELL=/bin/zsh
-export PYENV_ROOT=$HOME/.pyenv
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 if hash yarn 2>/dev/null; then
@@ -14,7 +6,7 @@ if hash yarn 2>/dev/null; then
 fi
 
 if [ -d /usr/local/go/bin/ ]; then
-  export GOPATH=~/go
+  export GOPATH=$HOME/go
   export GOBIN="$GOPATH/bin"
   export PATH="/usr/local/go/bin:$GOBIN:$PATH"
 elif [ -d ~/.go/bin/ ]; then
@@ -24,19 +16,12 @@ elif [ -d ~/.go/bin/ ]; then
   export PATH="$GOPATH/bin:$PATH"
 fi
 
-if [ -d $HOME/.pyenv ]; then
-	export PYENV_ROOT=$HOME/.pyenv
-	export PATH=$PYENV_ROOT/bin:$PATH
-fi
-
 if [ -d $HOME/.cargo ]; then
 	export PATH=$HOME/.cargo/bin:$PATH
 fi
 
-# export EDITOR='nvim'
 export COLORTERM=truecolor
 export LS_COLORS=$LS_COLORS:'di=1;35:ow=0;35:ex=1;94:ln=1;33:'
-export AWS_PROFILE=default
 
 if [[ $s(command -v fd) ]]; then
 	export FZF_CTRL_T_COMMAND='fd --follow -t f -H --exclude .git .'
@@ -48,9 +33,6 @@ export NVM_DIR="$HOME/.config/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # export NVM_COLORS='yMeWg'
-
-source $HOME/.config/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f $XDG_CONFIG_HOME/.p10k.zsh ]] || source $XDG_CONFIG_HOME/.p10k.zsh
 
 # ZSH completion?
 # autoload -Uz compinit
@@ -67,7 +49,14 @@ else
 	source /usr/share/doc/fzf/examples/key-bindings.zsh
 fi
 
+if [ -d $HOME/.pyenv ]; then
+	export PYENV_ROOT=$HOME/.pyenv
+	export PATH=$PYENV_ROOT/bin:$PATH
+fi
 eval "$(pyenv init -)"
+
+export STARSHIP_CONFIG=$HOME/dotfiles/starship.toml
+eval "$(starship init zsh)"
 
 # safe at home :)
 cd ~

@@ -9,8 +9,8 @@ vim.cmd [[packadd packer.nvim]]  -- required if opt = true for packer
 return require("packer").startup(function()
 	use({ "wbthomason/packer.nvim", opt = true })
 
-	-- speed up Neovim runtime
-	use("lewis6991/impatient.nvim")
+-- 	-- speed up Neovim runtime
+-- 	use("lewis6991/impatient.nvim")
 
 	-- statusline, tabline
 	use({
@@ -32,6 +32,9 @@ return require("packer").startup(function()
 		config = [[require('plugins.treesitter-config')]],
 	})
 
+-- 	-- CoC
+-- 	use({ 'neoclide/coc.nvim', branch = 'release' })
+
 	-- LSP
 	use({
 		"neovim/nvim-lspconfig",
@@ -52,7 +55,7 @@ return require("packer").startup(function()
 	-- snippets
 	use({
 		"L3MON4D3/LuaSnip",
-		requires = { "rafamadriz/friendly-snippets" },
+		-- requires = { "rafamadriz/friendly-snippets" },
 		config = [[require('plugins.luasnips-config')]],
 	})
 
@@ -72,8 +75,10 @@ return require("packer").startup(function()
 		config = [[require('plugins.cmp-config')]],
 	})
 
-	-- completion kinds and version control signs on side
+	-- completion kinds
 	use("onsails/lspkind-nvim")
+
+	-- version control signs on side
 	use({
 		"lewis6991/gitsigns.nvim",
 		config = [[require('plugins.gitsigns-config')]],
@@ -83,13 +88,13 @@ return require("packer").startup(function()
 	use({
 		"windwp/nvim-autopairs",
 		config = [[require('plugins.autopair-config')]],
-		wants = "nvim-cmp",
+		-- wants = "nvim-cmp",
 	})
 
-	use({
-		"windwp/nvim-ts-autotag",
-		config = [[require('plugins.ts-autotag-config')]],
-	})
+-- 	use({
+-- 		"windwp/nvim-ts-autotag",
+-- 		config = [[require('plugins.ts-autotag-config')]],
+-- 	})
 
 	use({
 		"kyazdani42/nvim-tree.lua",
