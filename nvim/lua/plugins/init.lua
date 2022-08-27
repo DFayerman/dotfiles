@@ -125,10 +125,10 @@ return require("packer").startup(function()
 	})
 
 	-- debugger
-	-- use({ 
-	-- 	"mfussenegger/nvim-dap",
-	-- 	config = [[require('plugins.dap-config')]],
-	-- })
+	use({ 
+		"mfussenegger/nvim-dap",
+		config = [[require('plugins.dap-config')]],
+	})
 
 	-- floating terminal
 	use('voldikss/vim-floaterm')

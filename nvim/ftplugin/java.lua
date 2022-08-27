@@ -1,13 +1,8 @@
 local lspconfig = require("lspconfig")
 local configs = require("lspconfig.configs")
 local nvim_cmp = require("cmp_nvim_lsp")
+local jdtls = require('jdtls')
 
-
-local jdtls_ok, jdtls = pcall(require, "jdtls")
-if not jdtls_ok then
-  vim.notify "JDTLS not found"
-  return
-end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = nvim_cmp.update_capabilities(capabilities)
@@ -25,8 +20,6 @@ local bufmap = function(bufnr, mode, lhs, rhs, opts)
 	)
 end
 
-
--- custom on_attach (mappings)
 local on_attach = function(client, bufnr)
 	local opts = { noremap = true, silent = true }
 	bufmap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
@@ -39,12 +32,19 @@ local on_attach = function(client, bufnr)
 	bufmap(bufnr, "i", "<C-x>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	bufmap(bufnr, "n", "<Leader>a", "<cmd>lua vim.diagnostic.open_float(nil)<CR>", opts)
 
+  jdtls.setup_dap({ hotcodereplace = 'auto' })
+  jdtls.setup.add_commands()
 	bufmap(bufnr, "n", "<Leader>o", "<Cmd>lua require'jdtls'.organize_imports()<CR>", opts)
+	bufmap(bufnr, "n", "<Leader>df", "<Cmd>lua require'jdtls'.test_class()<CR>", opts)
+	bufmap(bufnr, "n", "<Leader>dn", "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", opts)
 	require('illuminate').on_attach(client)
 end
 
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = os.getenv("HOME") .. '/.local/share/eclipse/' .. project_name
+
+local bundles = { vim.fn.glob("/opt/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar") }
+vim.list_extend(bundles, vim.split(vim.fn.glob("/opt/vscode-java-test/server/*.jar"), "\n"))
 
 local config = {
   cmd = {
@@ -84,7 +84,6 @@ local config = {
       references = {
         includeDecompiledSources = true,
       },
-			extendedClientCapabilities = extendedClientCapabilities,
 			configuration = {
 				runtimes = {
 					{
@@ -110,7 +109,11 @@ local config = {
 				useBlocks = true,
 			},
     }
-  }
+  },
+	init_options = {
+		bundles = bundles;
+		extendedClientCapabilities = extendedClientCapabilities
+	}
 }
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.

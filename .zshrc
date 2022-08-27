@@ -16,6 +16,8 @@ elif [ -d ~/.go/bin/ ]; then
   export PATH="$GOPATH/bin:$PATH"
 fi
 
+export PATH="$PATH:$HOME/.rvm/bin"
+
 if [ -d $HOME/.cargo ]; then
 	export PATH=$HOME/.cargo/bin:$PATH
 fi
@@ -26,20 +28,19 @@ export LS_COLORS=$LS_COLORS:'di=1;35:ow=0;35:ex=1;94:ln=1;33:'
 if [[ $s(command -v fd) ]]; then
 	export FZF_CTRL_T_COMMAND='fd --follow -t f -H --exclude .git .'
 	export FZF_ALT_C_COMMAND='fd --follow -E go/ -E node_modules/ -E .git -t d . $HOME'
-	# export FZF_ALT_C_COMMAND='fd --follow -E go/ -E node_modules/ -E .git -E agilitek -t d . $HOME'
 fi
 
 export NVM_DIR="$HOME/.config/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# export NVM_COLORS='yMeWg'
+export NVM_COLORS='yMeWg'
 
 # ZSH completion?
-# autoload -Uz compinit
-# compinit
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 complete -C '/usr/bin/aws_completer' aws
+# start with blank AWS profile to clear prompt
+export AWS_PROFILE=
 
 source $HOME/dotfiles/keybindings.zsh
 

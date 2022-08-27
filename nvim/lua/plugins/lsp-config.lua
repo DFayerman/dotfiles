@@ -191,6 +191,7 @@ for _, lsp in ipairs({
 	"tsserver",
 	-- "tailwindcss",
 	"pyright",
+	"solargraph",
 }) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,

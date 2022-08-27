@@ -1,2 +1,13 @@
 [character]
 success_symbol = "[➜](bold green)"
+
+[python]
+pyenv_version_name = true
+python_binary = "python3"
+
+[nodejs]
+detect_files = []
+detect_folders = []
+
+[ruby]
+detect_variables = []

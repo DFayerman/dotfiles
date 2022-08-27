@@ -1,6 +1,6 @@
 set $mod Mod1
-set $monitor1 "DP-2"
-set $monitor2 "DP-4"
+set $monitor1 "DP-0"
+# set $monitor2 "DP-4"
 
 font pango:UbuntuMono 10
 
@@ -10,8 +10,8 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 hide_edge_borders both
 
-exec --no-startup-id xrandr --output $monitor1 --primary --auto --right-of $monitor2 &
-exec --no-startup-id xrandr --output $monitor2 --auto --left-of $monitor1 &
+# exec --no-startup-id xrandr --output $monitor1 --primary --auto --right-of $monitor2 &
+# exec --no-startup-id xrandr --output $monitor2 --auto --left-of $monitor1 &
 
 # wallpaper
 exec_always --no-startup-id sh ~/.fehbg
@@ -27,7 +27,7 @@ exec_always --no-startup-id sh ~/dotfiles/polybar/launch.sh
 exec_always --no-startup-id picom --config ~/dotfiles/picom.conf
 
 # apply global gaps
-gaps inner 35
+gaps inner 75
 gaps outer 0
 workspace $ws1 gaps inner 150
 workspace $ws1 gaps horizontal 250
@@ -179,6 +179,10 @@ mode "CAPS LOCK" {
 }
 
 bindsym Caps_Lock mode "CAPS LOCK"
+
+# bar {
+#         status_command i3status
+# }
 
 # class                 border  bground text    indicator child_border
 client.focused          #689D6A #689D6A #282828 #689D6A   #689D6A

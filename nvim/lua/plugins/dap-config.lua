@@ -1,15 +1,13 @@
 local dap = require("dap")
-
-dap.adapters.python = {
-  type = 'executable';
-  command = '/home/david/.pyenv/shims/python';
-  args = { '-m', 'debugpy.adapter' };
-}
-local dap = require('dap')
-dap.configurations.python = {
-  {
-    type = 'python';
-    request = 'launch';
-    name = "Launch file";
-	}
-}
+-- dap.adapters.python = {
+--   type = 'executable';
+--   command = '/home/david/.pyenv/shims/python';
+--   args = { '-m', 'debugpy.adapter' };
+-- }
+-- dap.configurations.python = {
+--   {
+--     type = 'python';
+--     request = 'launch';
+--     name = "Launch file";
+-- 	}
+-- }

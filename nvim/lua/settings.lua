@@ -4,7 +4,6 @@ opt.encoding = "utf-8"
 opt.shell = "/bin/zsh"
 opt.background = "dark"
 opt.termguicolors = true
-opt.cc = "80"
 
 vim.cmd([[
 	filetype plugin indent on
@@ -71,6 +70,3 @@ local fileHandle = assert(io.popen("pyenv which python", "r"))
 local commandOutput = string.gsub(assert(fileHandle:read("*a")), "\n", "")
 fileHandle:close()
 vim.g.python3_host_prog = commandOutput
-
--- enforce 80 col width in markdown files
-vim.cmd([[  au BufRead,BufNewFile *.md setlocal textwidth=80  ]])
