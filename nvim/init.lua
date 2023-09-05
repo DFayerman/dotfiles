@@ -1,19 +1,36 @@
--- set LEADER key here
-vim.g.mapleader = " "
+require('settings')
+require('maps')
 
--- load impatient plugin first
-pcall(require, "impatient")
+-- install lazy.nvim (package manager), bootstrap
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
--- ROOT CONFIG INIT
-require("plugins")
-require("settings")
-require("keys")
+-- initialize lazy.nvim (plugins)
+require("lazy").setup('plugins')
 
--- below errors if not run last after plugins loaded
-vim.cmd([[
-	syntax on
-	augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost lua/plugins/init.lua source <afile> | PackerCompile
-  augroup end
-]])
+local lsp = require('lsp-zero').preset({
+  name = 'minimal',
+  set_lsp_keymaps = true,
+  manage_nvim_cmp = true,
+  suggest_lsp_servers = false,
+})
+
+-- (Optional) Configure lua language server for neovim
+-- lsp.nvim_workspace()
+
+lsp.ensure_installed({
+  'rust_analyzer',
+  'clangd'
+})
+
+lsp.setup()

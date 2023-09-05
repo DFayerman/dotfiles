@@ -47,44 +47,24 @@ nmap("<BS>", ":bprevious<CR>")
 -- 	"<M-`>",
 -- 	':let $VIM_DIR=expand("%:p:h")<CR>:FloatermToggle<CR>acd $VIM_DIR<CR>clear<CR>'
 -- )
-nmap("<M-`>", ':FloatermToggle<CR>')
+-- nmap("<M-`>", ':FloatermToggle<CR>')
 -- fuzzy finder
 nmap("<C-p>", ":Telescope find_files<CR>")
 -- VSCode-style close file (overwrites viewport prefix)
-vim.api.nvim_set_keymap(
-	"n",
-	"<M-w>",
-	[[ len(getbufinfo({"buflisted":1})) == 1 ? ":wq<CR>" : &buftype ==# "terminal" || &buftype ==# "help" || &buftype ==# "nofile" ? ":bd!<CR>" : ":w<CR>:bd!<CR>" ]],
-	{ noremap = true, silent = true, expr = true }
-)
+-- vim.api.nvim_set_keymap(
+-- 	"n",
+-- 	"<M-w>",
+-- 	[[ len(getbufinfo({"buflisted":1})) == 1 ? ":wq<CR>" : &buftype ==# "terminal" || &buftype ==# "help" || &buftype ==# "nofile" ? ":bd!<CR>" : ":w<CR>:bd!<CR>" ]],
+-- 	{ noremap = true, silent = true, expr = true }
+-- )
 -- Neovim built-in terminal emulator mappings
-tmap("<Esc>", "<C-\\><C-n>")
+-- tmap("<Esc>", "<C-\\><C-n>")
 -- toggle Nvim-Tree
-nmap("<Leader><TAB>", ":NvimTreeToggle<CR>")
+-- nmap("<Leader><TAB>", ":NvimTreeToggle<CR>")
 -- create annotation (Neogen)
-nmap("<M-a>", ":Neogen<CR>")
+-- nmap("<M-a>", ":Neogen<CR>")
 -- move between splits
 nmap("<C-l>", "<C-w>l")
 imap("<C-l>", "<Esc><C-w>l")
 nmap("<C-h>", "<C-w>h")
 imap("<C-h>", "<Esc><C-w>h")
--- update
-nmap("<M-u>", ":PackerSync<CR>")
--- vim.api.nvim_set_keymap(
--- 	"i",
--- 	"<CR>",
--- 	[[ coc#pum#visible() ? coc#pum#confirm() : "<CR>" ]],
--- 	{ noremap = true, expr = true }
--- )
--- vim.api.nvim_set_keymap(
--- 	"i",
--- 	"<Tab>",
--- 	[[ coc#pum#visible() ? coc#pum#next(1) : "\<Tab>" ]],
--- 	{ noremap = true, expr = true }
--- )
--- vim.api.nvim_set_keymap(
--- 	"i",
--- 	"<S-Tab>",
--- 	[[ coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>" ]],
--- 	{ noremap = true, expr = true }
--- )

@@ -5,9 +5,10 @@ alias mkdir="mkdir -pv";
 alias c="clear";
 alias wget="wget -c";
 alias whatisthis="cat /etc/os-release"
-alias l="ls -sh1FAur --group-directories-first --color=auto"
+alias l="ls -sh1FAur --color=auto"
 alias L="l"
 alias whatsmyip="curl -s ip4only.me/api/ | grep -Eo '([0-9]{2,3}\.){3}[0-9]{1,3}'"
+alias rmf="rm -rf"
 # navigation
 alias ..="cd .."
 alias ~="cd ~"
@@ -31,7 +32,7 @@ alias tmls='tmux list-sessions'
 alias ta="tmux attach"
 
 ## Neovim aliases for sanity
-if [[ -f '/usr/local/bin/nvim' ]]; then
+if [[ -f '/usr/local/bin/nvim' || -f '/opt/homebrew/bin/nvim' ]]; then
 	alias vnvim="nvim"
 	alias n="nvim"
 	alias vim="nvim"
